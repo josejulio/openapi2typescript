@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "module": "commonjs",
+    "target": "ES6",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

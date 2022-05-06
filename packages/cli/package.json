@@ -1,0 +1,33 @@
+{
+  "name": "openapi2typescript-cli",
+  "version": "0.5.1",
+  "license": "Apache-2.0",
+  "bin": {
+    "openapi2typescript": "./dist/src/main.js"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "start": "tsc --build --watch",
+    "lint": "eslint --ext js,ts,tsx src",
+    "lint:fix": "eslint --ext js,ts,tsx src --fix",
+    "test": "jest --verbose",
+    "test:ci": "npm-run-all 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
+  },
+  "dependencies": {
+    "camelcase": "5.3.1",
+    "commander": "7.2.0",
+    "eslint": "7.28.0",
+    "is-url": "1.2.4",
+    "node-fetch": "^2.6.1",
+    "prettier": "2.3.1"
+  },
+  "devDependencies": {
+    "assert-never": "1.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

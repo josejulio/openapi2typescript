@@ -1,0 +1,971 @@
+{
+  "openapi": "3.0.3",
+  "paths": {
+    "/endpoints": {
+      "get": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_getEndpoints",
+        "parameters": [
+          { "name": "active", "in": "query", "schema": { "type": "boolean" } },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page, if not specified or 0 is used, returns all elements",
+            "schema": { "default": "20", "type": "integer" }
+          },
+          { "name": "name", "in": "query", "schema": { "type": "string" } },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": { "format": "int32", "type": "integer" }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Starts at first page (0), if not specified starts at first page.",
+            "schema": { "type": "integer" }
+          },
+          { "name": "sort_by", "in": "query", "schema": { "type": "string" } },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EndpointPage" }
+              }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["read:integrations_ep"] }]
+      },
+      "post": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_createEndpoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Endpoint" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Endpoint" }
+              }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      }
+    },
+    "/endpoints/email/subscription/{bundleName}/{applicationName}/{type}": {
+      "put": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_subscribeEmail",
+        "parameters": [
+          {
+            "name": "applicationName",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "bundleName",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/EmailSubscriptionType" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "boolean" } }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      },
+      "delete": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_unsubscribeEmail",
+        "parameters": [
+          {
+            "name": "applicationName",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "bundleName",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/EmailSubscriptionType" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "boolean" } }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      }
+    },
+    "/endpoints/system/email_subscription": {
+      "post": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_getOrCreateEmailSubscriptionEndpoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestEmailSubscriptionProperties"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Endpoint" }
+              }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["read:integrations_ep"] }]
+      }
+    },
+    "/endpoints/{id}": {
+      "get": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_getEndpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Endpoint" }
+              }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["read:integrations_ep"] }]
+      },
+      "put": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_updateEndpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Endpoint" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      },
+      "delete": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_deleteEndpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The integration has been deleted",
+            "content": {}
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      }
+    },
+    "/endpoints/{id}/enable": {
+      "put": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_enableEndpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      },
+      "delete": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_disableEndpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The integration has been disabled",
+            "content": {}
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["write:integrations_ep"] }]
+      }
+    },
+    "/endpoints/{id}/history": {
+      "get": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_getEndpointHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          },
+          {
+            "name": "includeDetail",
+            "in": "query",
+            "description": "Include the detail in the reply",
+            "schema": { "type": "boolean" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page, if not specified or 0 is used, returns a maximum of 500 elements.",
+            "schema": { "default": "20", "type": "integer" }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": { "format": "int32", "type": "integer" }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Starts at first page (0), if not specified starts at first page.",
+            "schema": { "type": "integer" }
+          },
+          { "name": "sort_by", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationHistory"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["read:integrations_ep"] }]
+      }
+    },
+    "/endpoints/{id}/history/{history_id}/details": {
+      "get": {
+        "tags": ["Endpoint Resource"],
+        "operationId": "EndpointResource_getDetailedEndpointHistory",
+        "parameters": [
+          {
+            "name": "history_id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "string" } }
+            }
+          },
+          "401": { "description": "Not Authorized" },
+          "403": { "description": "Not Allowed" }
+        },
+        "security": [{ "SecurityScheme": ["read:integrations_ep"] }]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddAccessRequest": {
+        "type": "object",
+        "properties": {
+          "role": { "type": "string" },
+          "application_id": { "$ref": "#/components/schemas/UUID" }
+        }
+      },
+      "AddApplicationRequest": {
+        "required": ["name", "display_name", "bundle_id"],
+        "type": "object",
+        "properties": {
+          "name": { "maxLength": 255, "type": "string", "nullable": false },
+          "display_name": { "type": "string", "nullable": false },
+          "bundle_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "owner_role": { "maxLength": 200, "type": "string" }
+        }
+      },
+      "AggregationEmailTemplate": {
+        "required": [
+          "subscription_type",
+          "subject_template_id",
+          "body_template_id"
+        ],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "application": { "$ref": "#/components/schemas/Application" },
+          "application_id": { "$ref": "#/components/schemas/UUID" },
+          "subscription_type": {
+            "allOf": [
+              { "$ref": "#/components/schemas/EmailSubscriptionType" },
+              { "nullable": false }
+            ]
+          },
+          "subject_template": { "$ref": "#/components/schemas/Template" },
+          "subject_template_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "body_template": { "$ref": "#/components/schemas/Template" },
+          "body_template_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "Application": {
+        "required": ["name", "display_name", "bundle_id"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "name": { "maxLength": 255, "type": "string", "nullable": false },
+          "display_name": { "type": "string", "nullable": false },
+          "bundle_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "Application1": {
+        "required": ["id", "display_name"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "display_name": { "type": "string", "nullable": false }
+        }
+      },
+      "BasicAuthentication": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        }
+      },
+      "BehaviorGroup": {
+        "required": ["display_name", "bundle_id"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "display_name": {
+            "pattern": "\\S",
+            "type": "string",
+            "nullable": false
+          },
+          "bundle_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "bundle": { "$ref": "#/components/schemas/Bundle" },
+          "actions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/BehaviorGroupAction" }
+          },
+          "default_behavior": { "type": "boolean" }
+        }
+      },
+      "BehaviorGroupAction": {
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/BehaviorGroupActionId" },
+          "endpoint": { "$ref": "#/components/schemas/Endpoint" }
+        }
+      },
+      "BehaviorGroupActionId": {
+        "required": ["behaviorGroupId", "endpointId"],
+        "type": "object",
+        "properties": {
+          "behaviorGroupId": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "endpointId": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "Bundle": {
+        "required": ["name", "display_name"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "name": { "maxLength": 255, "type": "string", "nullable": false },
+          "display_name": { "type": "string", "nullable": false }
+        }
+      },
+      "CamelProperties": {
+        "required": ["url", "disable_ssl_verification"],
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "nullable": false },
+          "disable_ssl_verification": { "type": "boolean", "nullable": false },
+          "secret_token": { "maxLength": 255, "type": "string" },
+          "basic_authentication": {
+            "$ref": "#/components/schemas/BasicAuthentication"
+          },
+          "sub_type": { "type": "string", "deprecated": true },
+          "extras": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      },
+      "CurrentStatus": {
+        "required": ["status"],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              { "$ref": "#/components/schemas/Status" },
+              { "nullable": false }
+            ]
+          },
+          "start_time": { "format": "date-time", "type": "string" },
+          "end_time": { "format": "date-time", "type": "string" }
+        }
+      },
+      "EmailSubscriptionProperties": {
+        "required": ["only_admins", "ignore_preferences"],
+        "type": "object",
+        "properties": {
+          "only_admins": { "type": "boolean", "nullable": false },
+          "ignore_preferences": { "type": "boolean", "nullable": false },
+          "group_id": { "$ref": "#/components/schemas/UUID" }
+        }
+      },
+      "EmailSubscriptionType": {
+        "enum": ["INSTANT", "DAILY"],
+        "type": "string"
+      },
+      "Endpoint": {
+        "required": ["name", "description", "type"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "name": { "maxLength": 255, "type": "string", "nullable": false },
+          "description": { "type": "string", "nullable": false },
+          "enabled": { "type": "boolean" },
+          "properties": {
+            "allOf": [
+              { "$ref": "#/components/schemas/EndpointProperties" },
+              {
+                "oneOf": [
+                  { "$ref": "#/components/schemas/WebhookProperties" },
+                  {
+                    "$ref": "#/components/schemas/EmailSubscriptionProperties"
+                  },
+                  { "$ref": "#/components/schemas/CamelProperties" }
+                ]
+              }
+            ]
+          },
+          "type": { "$ref": "#/components/schemas/EndpointType" },
+          "sub_type": { "type": "string" }
+        }
+      },
+      "EndpointPage": {
+        "required": ["data", "links", "meta"],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Endpoint" },
+            "nullable": false
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "nullable": false
+          },
+          "meta": {
+            "allOf": [
+              { "$ref": "#/components/schemas/Meta" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "EndpointProperties": { "type": "object" },
+      "EndpointType": {
+        "enum": ["webhook", "email_subscription", "default", "camel"],
+        "type": "string"
+      },
+      "Environment": {
+        "enum": ["PROD", "STAGE", "EPHEMERAL", "LOCAL_SERVER"],
+        "type": "string"
+      },
+      "EventLogEntry": {
+        "required": [
+          "id",
+          "created",
+          "bundle",
+          "application",
+          "event_type",
+          "actions"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "created": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": false
+          },
+          "bundle": { "type": "string", "nullable": false },
+          "application": { "type": "string", "nullable": false },
+          "event_type": { "type": "string", "nullable": false },
+          "payload": { "type": "string" },
+          "actions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EventLogEntryAction" },
+            "nullable": false
+          }
+        }
+      },
+      "EventLogEntryAction": {
+        "required": ["id", "endpoint_type", "invocation_result"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "endpoint_type": {
+            "allOf": [
+              { "$ref": "#/components/schemas/EndpointType" },
+              { "nullable": false }
+            ]
+          },
+          "endpoint_sub_type": { "type": "string" },
+          "invocation_result": { "type": "boolean", "nullable": false },
+          "endpoint_id": { "$ref": "#/components/schemas/UUID" },
+          "details": {
+            "type": "object",
+            "additionalProperties": { "type": "object" }
+          }
+        }
+      },
+      "EventType": {
+        "required": ["name", "display_name", "application_id"],
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "name": { "maxLength": 255, "type": "string", "nullable": false },
+          "display_name": { "type": "string", "nullable": false },
+          "description": { "type": "string" },
+          "application_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "application": { "$ref": "#/components/schemas/Application" }
+        }
+      },
+      "Facet": {
+        "required": ["id", "name", "displayName"],
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "nullable": false },
+          "name": { "type": "string", "nullable": false },
+          "displayName": { "type": "string", "nullable": false },
+          "children": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Facet" }
+          }
+        }
+      },
+      "HttpType": { "enum": ["GET", "POST", "PUT"], "type": "string" },
+      "InstantEmailTemplate": {
+        "required": ["subject_template_id", "body_template_id"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "event_type": { "$ref": "#/components/schemas/EventType" },
+          "event_type_id": { "$ref": "#/components/schemas/UUID" },
+          "subject_template": { "$ref": "#/components/schemas/Template" },
+          "subject_template_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "body_template": { "$ref": "#/components/schemas/Template" },
+          "body_template_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "InternalApplicationUserPermission": {
+        "required": ["application_id", "application_display_name", "role"],
+        "type": "object",
+        "properties": {
+          "application_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          },
+          "application_display_name": { "type": "string", "nullable": false },
+          "role": { "type": "string", "nullable": false }
+        }
+      },
+      "InternalRoleAccess": {
+        "required": ["role", "application_id"],
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "role": { "maxLength": 200, "type": "string", "nullable": false },
+          "application_id": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UUID" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "InternalUserPermissions": {
+        "required": ["is_admin", "applications", "roles"],
+        "type": "object",
+        "properties": {
+          "is_admin": { "type": "boolean", "nullable": false },
+          "applications": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Application1" },
+            "nullable": false
+          },
+          "roles": {
+            "type": "array",
+            "items": { "type": "string" },
+            "nullable": false
+          }
+        }
+      },
+      "Meta": {
+        "required": ["count"],
+        "type": "object",
+        "properties": {
+          "count": { "format": "int64", "type": "integer", "nullable": false }
+        }
+      },
+      "NotificationHistory": {
+        "required": ["invocationTime", "invocationResult"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "invocationTime": {
+            "format": "int64",
+            "type": "integer",
+            "nullable": false
+          },
+          "invocationResult": { "type": "boolean", "nullable": false },
+          "endpointId": { "$ref": "#/components/schemas/UUID" },
+          "details": {
+            "type": "object",
+            "additionalProperties": { "type": "object" }
+          },
+          "endpointType": { "$ref": "#/components/schemas/EndpointType" },
+          "endpointSubType": { "type": "string" }
+        }
+      },
+      "PageEventLogEntry": {
+        "required": ["data", "links", "meta"],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EventLogEntry" },
+            "nullable": false
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "nullable": false
+          },
+          "meta": {
+            "allOf": [
+              { "$ref": "#/components/schemas/Meta" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "PageEventType": {
+        "required": ["data", "links", "meta"],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EventType" },
+            "nullable": false
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "nullable": false
+          },
+          "meta": {
+            "allOf": [
+              { "$ref": "#/components/schemas/Meta" },
+              { "nullable": false }
+            ]
+          }
+        }
+      },
+      "RenderEmailTemplateRequest": {
+        "required": ["subject_template", "body_template", "payload"],
+        "type": "object",
+        "properties": {
+          "subject_template": { "type": "string", "nullable": false },
+          "body_template": { "type": "string", "nullable": false },
+          "payload": { "minLength": 1, "type": "string", "nullable": false }
+        }
+      },
+      "RequestDefaultBehaviorGroupPropertyList": {
+        "required": ["only_admins", "ignore_preferences"],
+        "type": "object",
+        "properties": {
+          "only_admins": { "type": "boolean", "nullable": false },
+          "ignore_preferences": { "type": "boolean", "nullable": false }
+        }
+      },
+      "RequestEmailSubscriptionProperties": {
+        "required": ["only_admins"],
+        "type": "object",
+        "properties": {
+          "only_admins": { "type": "boolean", "nullable": false },
+          "group_id": { "$ref": "#/components/schemas/UUID" }
+        }
+      },
+      "ServerInfo": {
+        "type": "object",
+        "properties": {
+          "environment": { "$ref": "#/components/schemas/Environment" }
+        }
+      },
+      "Status": { "enum": ["UP", "MAINTENANCE"], "type": "string" },
+      "Template": {
+        "required": ["name", "description", "data"],
+        "type": "object",
+        "properties": {
+          "created": { "format": "date-time", "type": "string" },
+          "updated": { "format": "date-time", "type": "string" },
+          "id": { "$ref": "#/components/schemas/UUID" },
+          "name": { "maxLength": 100, "type": "string", "nullable": false },
+          "description": { "type": "string", "nullable": false },
+          "data": { "type": "string", "nullable": false }
+        }
+      },
+      "UUID": {
+        "format": "uuid",
+        "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+        "type": "string"
+      },
+      "WebhookProperties": {
+        "required": ["url", "method", "disable_ssl_verification"],
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "nullable": false },
+          "method": {
+            "allOf": [
+              { "$ref": "#/components/schemas/HttpType" },
+              { "nullable": false }
+            ]
+          },
+          "disable_ssl_verification": { "type": "boolean", "nullable": false },
+          "secret_token": { "maxLength": 255, "type": "string" },
+          "basic_authentication": {
+            "$ref": "#/components/schemas/BasicAuthentication"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "SecurityScheme": {
+        "type": "http",
+        "description": "Authentication",
+        "scheme": "basic"
+      }
+    }
+  },
+  "info": {
+    "description": "The API for Integrations",
+    "version": "1.0",
+    "title": "Integrations"
+  },
+  "servers": [
+    {
+      "url": "https://cloud.redhat.com",
+      "description": "Production Server",
+      "variables": { "basePath": { "default": "/api/integrations/v1.0" } }
+    },
+    {
+      "url": "http://localhost:{port}",
+      "description": "Development Server",
+      "variables": {
+        "basePath": { "default": "/api/integrations/v1.0" },
+        "port": { "default": "8080" }
+      }
+    }
+  ]
+}

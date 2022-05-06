@@ -1,0 +1,876 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Policies",
+    "description" : "The API for Policies",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "https://cloud.redhat.com",
+    "description" : "Production Server",
+    "variables" : {
+      "basePath" : {
+        "default" : "/api/policies/v1.0"
+      }
+    }
+  }, {
+    "url" : "http://localhost:{port}",
+    "description" : "Development Server",
+    "variables" : {
+      "port" : {
+        "default" : "8080"
+      },
+      "basePath" : {
+        "default" : "/api/policies/v1.0"
+      }
+    }
+  } ],
+  "paths" : {
+    "/policies/{id}/enabled" : {
+      "post" : {
+        "summary" : "Enable/disable a policy",
+        "operationId" : "postPoliciesByIdEnabled",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the Policy",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/UUID"
+          }
+        }, {
+          "name" : "enabled",
+          "in" : "query",
+          "description" : "Should the policy be enabled (true) or disabled (false, default)",
+          "schema" : {
+            "default" : "false",
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "404" : {
+            "description" : "Policy not found"
+          },
+          "500" : {
+            "description" : "Updating failed"
+          },
+          "200" : {
+            "description" : "Policy updated"
+          }
+        }
+      }
+    },
+    "/status" : {
+      "get" : {
+        "operationId" : "getStatus",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/policies/ids/enabled" : {
+      "post" : {
+        "summary" : "Enable/disable policies identified by list of uuid in body",
+        "operationId" : "postPoliciesIdsEnabled",
+        "parameters" : [ {
+          "name" : "enabled",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ListUUID"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "200" : {
+            "description" : "Policy updated"
+          }
+        }
+      }
+    },
+    "/facts" : {
+      "get" : {
+        "summary" : "Retrieve a list of fact (keys) along with their data types",
+        "operationId" : "getFacts",
+        "responses" : {
+          "200" : {
+            "description" : "List of facts",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Fact"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/policies" : {
+      "get" : {
+        "summary" : "Return all policies for a given account",
+        "operationId" : "getPolicies",
+        "parameters" : [ {
+          "name" : "filter:op[description]",
+          "in" : "query",
+          "description" : "Operations used with the filter",
+          "schema" : {
+            "default" : "equal",
+            "enum" : [ "equal", "like", "ilike", "not_equal" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter:op[name]",
+          "in" : "query",
+          "description" : "Operations used with the filter",
+          "schema" : {
+            "default" : "equal",
+            "enum" : [ "equal", "like", "ilike", "not_equal" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[description]",
+          "in" : "query",
+          "description" : "Filtering policies by the description depending on the Filter operator used.",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[is_enabled]",
+          "in" : "query",
+          "description" : "Filtering policies by the is_enabled field.Defaults to true if no operand is given.",
+          "schema" : {
+            "default" : "true",
+            "enum" : [ "true", "false" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filtering policies by the name depending on the Filter operator used.",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of items per page, if not specified uses 50. -1 can be used to specify an unlimited page, when specified it ignores the offset",
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "Page number, starts 0, if not specified uses 0.",
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "sortColumn",
+          "in" : "query",
+          "description" : "Column to sort the results by",
+          "schema" : {
+            "enum" : [ "name", "description", "is_enabled", "mtime" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "sortDirection",
+          "in" : "query",
+          "description" : "Sort direction used",
+          "schema" : {
+            "enum" : [ "asc", "desc" ],
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Bad parameter for sorting was passed"
+          },
+          "404" : {
+            "description" : "No policies found for customer"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "200" : {
+            "description" : "Policies found",
+            "headers" : {
+              "TotalCount" : {
+                "description" : "Total number of items found",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PagedResponseOfPolicy"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Validate (and possibly persist) a passed policy for the given account",
+        "operationId" : "postPolicies",
+        "parameters" : [ {
+          "name" : "alsoStore",
+          "in" : "query",
+          "description" : "If passed and set to true, the passed policy is also persisted (if it is valid)",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Policy"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal error"
+          },
+          "400" : {
+            "description" : "No policy provided or policy validation failed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "description" : "Reason for failure",
+                  "type" : "object",
+                  "properties" : {
+                    "msg" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "Persisting failed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "description" : "Reason for failure",
+                  "type" : "object",
+                  "properties" : {
+                    "msg" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "201" : {
+            "description" : "Policy persisted",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Policy validated"
+          }
+        }
+      }
+    },
+    "/policies/{id}" : {
+      "get" : {
+        "summary" : "Retrieve a single policy for a customer by its id",
+        "operationId" : "getPoliciesById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "UUID of the policy",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/UUID"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "Policy not found"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "200" : {
+            "description" : "Policy found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Policy"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a single policy for a customer by its id",
+        "operationId" : "deletePoliciesById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "UUID of the policy",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/UUID"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "Policy not found"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "200" : {
+            "description" : "Policy deleted"
+          }
+        }
+      }
+    },
+    "/policies/{policyId}" : {
+      "put" : {
+        "summary" : "Update a single policy for a customer by its id",
+        "operationId" : "putPoliciesByPolicyId",
+        "parameters" : [ {
+          "name" : "policyId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/UUID"
+          }
+        }, {
+          "name" : "dry",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Policy"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid or no policy provided"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "404" : {
+            "description" : "Policy did not exist - did you store it before?"
+          },
+          "409" : {
+            "description" : "Persisting failed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "description" : "Reason for failure",
+                  "type" : "object",
+                  "properties" : {
+                    "msg" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Policy updated or policy validated"
+          }
+        }
+      }
+    },
+    "/policies/validate-name" : {
+      "post" : {
+        "summary" : "Validates the Policy.name and verifies if it is unique.",
+        "operationId" : "postPoliciesValidate-name",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "UUID of the policy",
+          "schema" : {
+            "$ref" : "#/components/schemas/UUID"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Policy validation failed"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "409" : {
+            "description" : "Name not unique"
+          },
+          "500" : {
+            "description" : "Internal error"
+          },
+          "200" : {
+            "description" : "Name validated"
+          }
+        }
+      }
+    },
+    "/policies/ids" : {
+      "get" : {
+        "summary" : "Return all policy ids for a given account after applying the filters",
+        "operationId" : "getPoliciesIds",
+        "parameters" : [ {
+          "name" : "filter:op[description]",
+          "in" : "query",
+          "description" : "Operations used with the filter",
+          "schema" : {
+            "default" : "equal",
+            "enum" : [ "equal", "like", "ilike", "not_equal" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter:op[name]",
+          "in" : "query",
+          "description" : "Operations used with the filter",
+          "schema" : {
+            "default" : "equal",
+            "enum" : [ "equal", "like", "ilike", "not_equal" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[description]",
+          "in" : "query",
+          "description" : "Filtering policies by the description depending on the Filter operator used.",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[is_enabled]",
+          "in" : "query",
+          "description" : "Filtering policies by the is_enabled field.Defaults to true if no operand is given.",
+          "schema" : {
+            "default" : "true",
+            "enum" : [ "true", "false" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filtering policies by the name depending on the Filter operator used.",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Bad parameter for sorting was passed"
+          },
+          "404" : {
+            "description" : "No policies found for customer"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "200" : {
+            "description" : "PolicyIds found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/List"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete policies for a customer by the ids passed in the body. Result will be a list of deleted UUIDs",
+        "operationId" : "deletePoliciesIds",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ListUUID"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "200" : {
+            "description" : "Policies deleted",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/UUID"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/policies/validate" : {
+      "post" : {
+        "summary" : "Validates a Policy condition",
+        "operationId" : "postPoliciesValidate",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Policy"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "400" : {
+            "description" : "No policy provided or condition not valid"
+          },
+          "500" : {
+            "description" : "Internal error"
+          },
+          "200" : {
+            "description" : "Condition validated"
+          }
+        }
+      }
+    },
+    "/" : {
+      "get" : {
+        "summary" : "Just a filler to have a defined return code for the base path",
+        "operationId" : "get",
+        "responses" : {
+          "404" : {
+            "description" : "There is no API functionality at this place"
+          }
+        }
+      }
+    },
+    "/policies/{id}/history/trigger" : {
+      "get" : {
+        "summary" : "Retrieve the trigger history of a single policy",
+        "operationId" : "getPoliciesByIdHistoryTrigger",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "UUID of the policy",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/UUID"
+          }
+        }, {
+          "name" : "filter:op[id]",
+          "in" : "query",
+          "description" : "Operations used with the name filter",
+          "schema" : {
+            "default" : "equal",
+            "enum" : [ "equal", "not_equal", "like" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter:op[name]",
+          "in" : "query",
+          "description" : "Operations used with the name filter",
+          "schema" : {
+            "default" : "equal",
+            "enum" : [ "equal", "like", "not_equal" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[id]",
+          "in" : "query",
+          "description" : "Filtering history entries by the id depending on the Filter operator used.",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filtering history entries by the host name depending on the Filter operator used.",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of items per page, if not specified uses 50. Maximum value is 200.",
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "Page number, starts 0, if not specified uses 0.",
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "sortColumn",
+          "in" : "query",
+          "description" : "Column to sort the results by",
+          "schema" : {
+            "enum" : [ "hostName", "id", "ctime" ],
+            "type" : "string"
+          }
+        }, {
+          "name" : "sortDirection",
+          "in" : "query",
+          "description" : "Sort direction used",
+          "schema" : {
+            "enum" : [ "asc", "desc" ],
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Bad parameters passed"
+          },
+          "403" : {
+            "description" : "Individual permissions missing to complete action"
+          },
+          "404" : {
+            "description" : "Policy not found"
+          },
+          "500" : {
+            "description" : "Retrieval of History failed"
+          },
+          "200" : {
+            "description" : "History could be retrieved",
+            "headers" : {
+              "TotalCount" : {
+                "description" : "Total number of items found",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PagedResponseOfHistoryItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Policy" : {
+        "required" : [ "conditions", "name" ],
+        "type" : "object",
+        "properties" : {
+          "actions" : {
+            "description" : "String describing actions separated by ';' when the policy is evaluated to true.Allowed values are 'email' and 'webhook'",
+            "type" : "string"
+          },
+          "conditions" : {
+            "description" : "Condition string.",
+            "minLength" : 1,
+            "type" : "string",
+            "example" : "arch = \"x86_64\"",
+            "nullable" : false
+          },
+          "ctime" : {
+            "format" : "yyyy-MM-dd hh:mm:ss.ddd",
+            "description" : "Create time in a form like '2020-01-24 12:19:56.718', output only",
+            "type" : "string",
+            "readOnly" : true
+          },
+          "description" : {
+            "description" : "A short description of the policy.",
+            "type" : "string"
+          },
+          "id" : {
+            "$ref" : "#/components/schemas/UUID"
+          },
+          "isEnabled" : {
+            "type" : "boolean"
+          },
+          "lastTriggered" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "mtime" : {
+            "format" : "yyyy-MM-dd hh:mm:ss.ddd",
+            "description" : "Last update time in a form like '2020-01-24 12:19:56.718', output only",
+            "type" : "string",
+            "readOnly" : true
+          },
+          "name" : {
+            "description" : "Name of the rule. Must be unique per customer account.",
+            "maxLength" : 150,
+            "minLength" : 1,
+            "type" : "string",
+            "nullable" : false
+          }
+        }
+      },
+      "Meta" : {
+        "type" : "object",
+        "properties" : {
+          "count" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }
+      },
+      "MapStringString" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "type" : "string"
+        }
+      },
+      "HistoryItem" : {
+        "description" : "A single history item for a fired trigger on a host",
+        "type" : "object",
+        "properties" : {
+          "ctime" : {
+            "format" : "int64",
+            "description" : "Fire time (since the epoch)",
+            "type" : "integer"
+          },
+          "hostName" : {
+            "description" : "Host name",
+            "type" : "string"
+          },
+          "id" : {
+            "description" : "Host id",
+            "type" : "string"
+          }
+        }
+      },
+      "Fact" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/components/schemas/FactType"
+          }
+        }
+      },
+      "PagedResponseOfHistoryItem" : {
+        "type" : "object",
+        "properties" : {
+          "links" : {
+            "$ref" : "#/components/schemas/MapStringString"
+          },
+          "meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ListHistoryItem"
+          }
+        }
+      },
+      "FactType" : {
+        "enum" : [ "BOOLEAN", "INT", "LIST", "STRING" ],
+        "type" : "string"
+      },
+      "ListUUID" : {
+        "type" : "array",
+        "items" : {
+          "format" : "uuid",
+          "pattern" : "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "type" : "string"
+        }
+      },
+      "PagedResponseOfPolicy" : {
+        "type" : "object",
+        "properties" : {
+          "links" : {
+            "$ref" : "#/components/schemas/MapStringString"
+          },
+          "meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ListPolicy"
+          }
+        }
+      },
+      "List" : {
+        "type" : "array"
+      },
+      "ListPolicy" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Policy"
+        }
+      },
+      "UUID" : {
+        "format" : "uuid",
+        "pattern" : "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+        "type" : "string"
+      },
+      "ListHistoryItem" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/HistoryItem"
+        }
+      }
+    }
+  }
+}

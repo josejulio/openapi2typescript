@@ -1,0 +1,52 @@
+{
+  "name": "openapi2typescript-repo",
+  "private": true,
+  "workspaces": [
+    "packages/cli",
+    "packages/core",
+    "packages/plugins/*"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "start": "tsc --build --watch",
+    "ci": "npm-run-all build lint test:ci",
+    "lint": "lerna run lint --stream",
+    "test": "lerna run test --stream",
+    "test:ci": "lerna run test:ci --stream",
+    "release": "lerna publish --conventional-commits --no-commit-hooks --no-verify-access --yes",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@goldstack/utils-typescript-references": "^0.1.11",
+    "@lerna/project": "3.21.0",
+    "@types/eslint": "7.28.0",
+    "@types/is-url": "1.2.30",
+    "@types/jest": "^27.5.0",
+    "@types/node-fetch": "^2.6.1",
+    "@types/prettier": "2.3.1",
+    "@types/rimraf": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "@yarnpkg/esbuild-plugin-pnp": "^3.0.0-rc.4",
+    "esbuild": "^0.14.38",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-testing-library": "^5.3.1",
+    "fetch-mock-jest": "^1.5.1",
+    "jest": "^28.1.0",
+    "lerna": "^4.0.0",
+    "react-fetching-library": "^1.7.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4",
+    "zod": "3.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "packageManager": "yarn@3.2.0"
+}

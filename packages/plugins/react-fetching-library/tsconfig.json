@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.shared.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "jsx": "react",
+    "paths": {
+      "openapi2typescript": [
+        "../../core/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../core"
+    }
+  ],
+  "files": [
+    "src/index.ts"
+  ]
+}

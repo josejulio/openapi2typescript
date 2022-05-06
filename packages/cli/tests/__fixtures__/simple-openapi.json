@@ -1,0 +1,111 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Generated API",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/fruits" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SetFruit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Fruit"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SetFruit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Fruit"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SetFruit"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Fruit" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Message" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SetFruit" : {
+        "uniqueItems" : true,
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Fruit"
+        }
+      }
+    }
+  }
+}

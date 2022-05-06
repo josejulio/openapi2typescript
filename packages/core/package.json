@@ -1,0 +1,23 @@
+{
+  "name": "openapi2typescript",
+  "version": "0.2.0",
+  "license": "Apache-2.0",
+  "main": "dist/src/index.js",
+  "files": [
+    "dist/src/**"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "start": "tsc --build --watch",
+    "lint": "eslint --ext js,ts,tsx src",
+    "lint:fix": "eslint --ext js,ts,tsx src --fix",
+    "test": "jest --verbose",
+    "test:ci": "npm-run-all 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
+  },
+  "peerDependencies": {
+    "zod": "^3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
