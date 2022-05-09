@@ -19,7 +19,7 @@ npx openapi2typescript-cli
 To use, you must run the binary `npm run openapi2typescript` or with npx `npx openapi2typescript-cli `.
 You must specify the input file or url to the openapi and the output file, see the [Options](#Options) for more info.
 
-You can see the lib usage at: [openapi2typescript](../../core/README.md)
+You can see the lib usage at: [openapi2typescript](../core/README.md)
 
 ## Options
 

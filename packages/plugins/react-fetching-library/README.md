@@ -1,9 +1,9 @@
 # openapi2typescript
 
-Supporting lib for [openapi2typescript-cli](../openapi2typescript-cli/README.md).
+Supporting lib for [openapi2typescript-cli](../../cli/README.md).
 
 # Installing
-See [openapi2typescript-cli](../openapi2typescript-cli/README.md)
+See [openapi2typescript-cli](../../cli/README.md)
 
 # Usage
 
@@ -12,7 +12,7 @@ and start validating. Currently only [react-fetching-library](https://github.com
 supported, but more are welcome.
 
 ## Using without connecting
-You can directly given the [example](../openapi2typescript-cli/README.md#Example) on the cli README you can import the
+You can directly given the [example](../../cli/README.md#Example) on the cli README you can import the
 types directly and use them to run your validations when you get the data.
 
 ```typescript
@@ -50,7 +50,7 @@ will take into account all the possible values that the query could return (depe
 
 If all the options are exhausted, a `console.error` will happen with the information.
 
-Going back to our [example](../openapi2typescript-cli/README.md#Example) we can see that our `DELETE` endpoint
+Going back to our [example](../../cli/README.md#Example) we can see that our `DELETE` endpoint
 returns on status 200 a SetFruit and on status 400 a Message. Given that, we can do the following:
 
 ```typescript
