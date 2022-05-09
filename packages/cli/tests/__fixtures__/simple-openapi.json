@@ -88,6 +88,9 @@
           },
           "name" : {
             "type" : "string"
+          },
+          "snake_case_prop": {
+            "type": "string"
           }
         }
       },

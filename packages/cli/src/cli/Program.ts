@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import { ActionGeneratorType } from '../core/types/ActionGeneratorType';
+import { NamingType } from '../core/types/NamingType';
 
 export const getProgram = () => {
     const program = new Command();
@@ -59,6 +60,22 @@ export const getProgram = () => {
         'This generates the typescript `Type` instead of inferring. Makes the types more human readable and in \n' +
         'some cases it could help the IDE when dealing with recursion.',
         false
+    )
+    .option(
+        '--naming <naming-option>',
+        'Specifies how to handle names, by default it keeps as found:\n'
+        + '- none\n'
+        + '- camel-case\n',
+        (naming: string): NamingType => {
+            if (naming.toUpperCase() === 'NONE') {
+                return NamingType.NONE;
+            } else if (naming.toUpperCase() === 'CAMEL-CASE') {
+                return NamingType.CAMEL_CASE;
+            }
+
+            throw new Error(`Unknown naming: ${naming}`);
+        },
+        NamingType.NONE
     )
     .requiredOption(
         '-i, --input <openapijson-file-or-url>',

@@ -1,4 +1,4 @@
-import { APIDescriptor, isType, Operation, ParamType } from '../core/types/ApiDescriptor';
+import { APIDescriptor, deType, isType, Operation, ParamType, SchemaType } from '../core/types/ApiDescriptor';
 import { Buffer, BufferType } from '../core/types/Buffer';
 import { ApiActionBuilder } from '../core/ApiActionBuilder';
 import { Options } from '../core/ApiBase';
@@ -73,7 +73,14 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
         this.appendTemp('.queryParams(query)\n');
 
         if (operation.requestBody) {
-            this.appendTemp('.data(params.body)\n');
+            const schema = deType(operation.requestBody.schema);
+            if (schema.type === SchemaType.OBJECT && schema.properties) {
+                this.appendTemp('.data(\n');
+                this.untransform(schema.properties, 'params.body');
+                this.appendTemp(')\n');
+            } else {
+                this.appendTemp('.data(params.body)\n');
+            }
         }
 
         if (operation.responses) {

@@ -1,5 +1,6 @@
 import { getProgram } from '../../src/cli/Program';
 import { ActionGeneratorType } from '../../src/core/types/ActionGeneratorType';
+import {NamingType} from "../../src/core/types/NamingType";
 
 describe('src/Program', () => {
     it('getProgram default values', () => {
@@ -11,7 +12,8 @@ describe('src/Program', () => {
             skipTypes: false,
             strict: true,
             explicitTypes: false,
-            apiBasePath: undefined
+            apiBasePath: undefined,
+            naming: NamingType.NONE
         });
     });
 
@@ -29,7 +31,9 @@ describe('src/Program', () => {
             '-i',
             'input',
             '-o',
-            'output'
+            'output',
+            '--naming',
+            'camel-case'
         ], {
             from: 'user'
         }).opts();
@@ -43,7 +47,8 @@ describe('src/Program', () => {
             explicitTypes: true,
             input: 'input',
             output: 'output',
-            apiBasePath: './mybase'
+            apiBasePath: './mybase',
+            naming: NamingType.CAMEL_CASE
         });
     });
 });

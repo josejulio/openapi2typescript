@@ -1,10 +1,11 @@
 import fetchMockJest from 'fetch-mock-jest';
-import { execute } from '../src/main';
-import { existsSync, mkdirSync, readFileSync } from 'fs';
+import {execute} from '../src/main';
+import {existsSync, mkdirSync, readFileSync} from 'fs';
 import rimRaf from 'rimraf';
 import fetchMock from 'node-fetch';
-import { ActionGeneratorType } from '../src/core/types/ActionGeneratorType';
+import {ActionGeneratorType} from '../src/core/types/ActionGeneratorType';
 import * as ts from 'typescript';
+import {NamingType} from "../src/core/types/NamingType";
 
 jest.mock('node-fetch', () => fetchMockJest.sandbox());
 
@@ -19,6 +20,57 @@ const tsCompile = (sourceFile: string, options?: ts.TranspileOptions): string =>
 };
 
 describe('src/cli/schema', () => {
+
+    const tempSchemaDir = './tmp/schemas';
+
+    beforeEach(() => {
+        mkdirSync(tempSchemaDir, {
+            recursive: true
+        });
+    });
+
+    afterEach(() => {
+        rimRaf.sync(tempSchemaDir);
+    });
+
+    it('naming - no case transformation', () => {
+        const filename = './tests/__fixtures__/simple-openapi.json';
+
+        return execute({
+            input: filename,
+            output: tempSchemaDir,
+            skipPostProcess: false,
+            addEslintDisable: true,
+            actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+            skipTypes: false,
+            strict: true,
+            explicitTypes: false,
+            naming: NamingType.NONE
+        }).then(() => {
+            expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+            expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).not.toContain('snakeCaseProp');
+        });
+    });
+
+    it('naming - transforms to camel-case', () => {
+        const filename = './tests/__fixtures__/simple-openapi.json';
+
+        return execute({
+            input: filename,
+            output: tempSchemaDir,
+            skipPostProcess: false,
+            addEslintDisable: true,
+            actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+            skipTypes: false,
+            strict: true,
+            explicitTypes: false,
+            naming: NamingType.CAMEL_CASE
+        }).then(() => {
+            expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+            expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toContain('snakeCaseProp');
+        });
+    });
+
     describe.each([
         './tests/__fixtures__/notifications-openapi.json',
         './tests/__fixtures__/integrations-openapi.json',
@@ -26,18 +78,6 @@ describe('src/cli/schema', () => {
         './tests/__fixtures__/policies-openapi.json',
         './tests/__fixtures__/simple-openapi.json'
     ])('execute for %s', (filename) => {
-
-        const tempSchemaDir = './tmp/schemas';
-
-        beforeEach(() => {
-            mkdirSync(tempSchemaDir, {
-                recursive: true
-            });
-        });
-
-        afterEach(() => {
-            rimRaf.sync(tempSchemaDir);
-        });
 
         it('execute input file accepts path', () => {
             return execute({
@@ -48,7 +88,8 @@ describe('src/cli/schema', () => {
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: true,
                 strict: true,
-                explicitTypes: false
+                explicitTypes: false,
+                naming: NamingType.NONE
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
 
@@ -69,7 +110,8 @@ describe('src/cli/schema', () => {
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: false,
                 strict: true,
-                explicitTypes: false
+                explicitTypes: false,
+                naming: NamingType.NONE
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toContain('z.infer<');
@@ -85,7 +127,8 @@ describe('src/cli/schema', () => {
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: false,
                 strict: true,
-                explicitTypes: true
+                explicitTypes: true,
+                naming: NamingType.NONE
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).not.toContain('z.infer<');
@@ -101,7 +144,8 @@ describe('src/cli/schema', () => {
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: true,
                 strict: false,
-                explicitTypes: false
+                explicitTypes: false,
+                naming: NamingType.NONE
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toContain('.nonstrict()');
@@ -117,7 +161,8 @@ describe('src/cli/schema', () => {
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: true,
                 strict: true,
-                explicitTypes: false
+                explicitTypes: false,
+                naming: NamingType.NONE
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).not.toContain('.nonstrict()');
@@ -138,7 +183,8 @@ describe('src/cli/schema', () => {
                 skipTypes: false,
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 strict: true,
-                explicitTypes: false
+                explicitTypes: false,
+                naming: NamingType.NONE
             }).then(() => {
                 (fetchMock as any).restore();
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();

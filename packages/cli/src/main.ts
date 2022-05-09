@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { CLIEngine } from 'eslint';
 import fetch from 'node-fetch';
 import prettier from 'prettier';
@@ -12,12 +11,14 @@ import { getProgram } from './cli/Program';
 import { Buffer, BufferType } from './core/types/Buffer';
 import { ReactFetchingLibraryApiActionBuilder } from './react-fetching-library/ApiActionBuilder';
 import { ActionGeneratorType } from './core/types/ActionGeneratorType';
+import { NamingType } from './core/types/NamingType';
 
 export interface Options {
     input: string;
     output: string;
     skipPostProcess: boolean;
     actionGenerator: ActionGeneratorType;
+    naming: NamingType;
     addEslintDisable: boolean;
     skipTypes: boolean;
     strict: boolean;
@@ -26,6 +27,10 @@ export interface Options {
 }
 
 export const execute = async (options: Options) => {
+
+    if (options.naming !== NamingType.NONE && (options.explicitTypes || options.skipTypes)) {
+        throw new Error('explicitTypes or skipTypes must be used when using a naming');
+    }
 
     let input;
 

@@ -1,4 +1,4 @@
-import {isReference, OpenAPI3} from './types/OpenAPI3';
+import { isReference, OpenAPI3 } from './types/OpenAPI3';
 import {
     APIDescriptor,
     deType,
@@ -21,7 +21,7 @@ import {
     Verb
 } from './types/ApiDescriptor';
 import camelcase from 'camelcase';
-import {sortByKey} from './Utils';
+import { sortByKey } from './Utils';
 import assertNever from 'assert-never';
 
 const refToName = (reference: OpenAPI3.Reference) => {

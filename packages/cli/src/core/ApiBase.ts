@@ -9,9 +9,11 @@ import {
     SchemaWithTypeName,
     Type
 } from './types/ApiDescriptor';
-import {Buffer, BufferType} from './types/Buffer';
+import { Buffer, BufferType } from './types/Buffer';
 import assertNever from 'assert-never';
-import {sortByKey} from './Utils';
+import { sortByKey } from './Utils';
+import { NamingType } from './types/NamingType';
+import camelcase from 'camelcase';
 
 export interface Options {
     skipTypes: boolean;
@@ -19,6 +21,7 @@ export interface Options {
     explicitTypes: boolean;
     useFunctionTypeGenerator: boolean;
     schemasPrefix: string;
+    naming: NamingType;
 }
 
 export class ApiBase {
@@ -36,6 +39,7 @@ export class ApiBase {
             explicitTypes: false,
             useFunctionTypeGenerator: true,
             schemasPrefix: '',
+            naming: NamingType.NONE,
             ...options
         };
         this.localBuffer = [];
@@ -45,7 +49,7 @@ export class ApiBase {
 
     protected propertiesTypes(properties: Record<string, SchemaOrType>) {
         sortByKey(Object.entries(properties)).forEach(([ key, schema ], index, array) => {
-            this.appendTemp(`${key}`);
+            this.appendTemp(`${this.processName(key)}`);
             if (schema.isOptional) {
                 this.appendTemp('?');
             }
@@ -227,6 +231,10 @@ export class ApiBase {
                 if (!this.options.strict) {
                     this.appendTemp('.nonstrict()');
                 }
+
+                if (this.options.naming !== NamingType.NONE) {
+                    this.transform(schema.properties);
+                }
             }
 
             if (schema.properties && schema.additionalProperties) {
@@ -395,6 +403,45 @@ export class ApiBase {
             return this.isUnknown(schemaOrType.referred);
         } else {
             return schemaOrType.type === SchemaType.UNKNOWN;
+        }
+    }
+
+    protected processName(key: string) {
+        if (this.options.naming === NamingType.NONE) {
+            return key;
+        } else if (this.options.naming === NamingType.CAMEL_CASE) {
+            return camelcase(key);
+        }
+    }
+
+    private transform(properties: Record<string, SchemaOrType>) {
+        if (this.options.naming === NamingType.NONE) {
+            return;
+        }
+
+        const entries = Object.entries(properties);
+        if (entries.length > 0) {
+            this.appendTemp('.transform(o => ({\n');
+            sortByKey(entries).forEach(([ key ]) => {
+                this.appendTemp(`${this.processName(key)}: o.${key},\n`);
+            });
+            this.appendTemp('}))');
+        }
+    }
+
+    protected untransform(properties: Record<string, SchemaOrType>, objectName: string) {
+        if (this.options.naming === NamingType.NONE) {
+            this.appendTemp(objectName);
+            return;
+        }
+
+        const entries = Object.entries(properties);
+        if (entries.length > 0) {
+            this.appendTemp('{\n');
+            sortByKey(entries).forEach(([ key ]) => {
+                this.appendTemp(`${key}: ${objectName}.${this.processName(key)},\n`);
+            });
+            this.appendTemp('}');
         }
     }
 }

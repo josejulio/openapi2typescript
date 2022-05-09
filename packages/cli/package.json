@@ -9,7 +9,7 @@
     "dist/*"
   ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && printf '%s\\n%s\\n' \"#!/usr/bin/env node\" \"$(cat dist/src/main.js)\" >dist/src/main.js",
     "start": "tsc --build --watch",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx src --fix",

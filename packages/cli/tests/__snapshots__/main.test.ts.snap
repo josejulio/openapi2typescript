@@ -12,7 +12,7 @@ import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
-} from 'openapi2typescript/react-fetching-library';
+} from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const AddAccessRequest = zodSchemaAddAccessRequest();
@@ -990,7 +990,7 @@ exports.Operations = exports.Schemas = void 0;
  */
 var z = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
-var react_fetching_library_1 = require(\\"openapi2typescript/react-fetching-library\\");
+var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
 (function (Schemas) {
     Schemas.AddAccessRequest = zodSchemaAddAccessRequest();
@@ -1394,7 +1394,7 @@ var Operations;
             if (params.type !== undefined) {
                 query.type = params.type;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1416,7 +1416,7 @@ var Operations;
         EndpointResourceCreateEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -1447,7 +1447,7 @@ var Operations;
                 .replace('{bundleName}', params.bundleName.toString())
                 .replace('{type}', params.type.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1477,7 +1477,7 @@ var Operations;
                 .replace('{bundleName}', params.bundleName.toString())
                 .replace('{type}', params.type.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1499,7 +1499,7 @@ var Operations;
         EndpointResourceGetOrCreateEmailSubscriptionEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints/system/email_subscription';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -1522,7 +1522,7 @@ var Operations;
         EndpointResourceGetEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1546,7 +1546,7 @@ var Operations;
         EndpointResourceUpdateEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -1569,7 +1569,7 @@ var Operations;
         EndpointResourceDeleteEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1592,7 +1592,7 @@ var Operations;
         EndpointResourceEnableEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints/{id}/enable'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1614,7 +1614,7 @@ var Operations;
         EndpointResourceDisableEndpoint.actionCreator = function (params) {
             var path = '/api/integrations/v1.0/endpoints/{id}/enable'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1662,7 +1662,7 @@ var Operations;
             if (params.sortBy !== undefined) {
                 query.sort_by = params.sortBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1688,7 +1688,7 @@ var Operations;
                 .replace('{history_id}', params.historyId.toString())
                 .replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -1711,7 +1711,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/integrations-openapi.js
  */
 import * as z from 'zod';
 import { ValidateRule } from 'openapi2typescript';
-import { actionBuilder } from 'openapi2typescript/react-fetching-library';
+import { actionBuilder } from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const AddAccessRequest = zodSchemaAddAccessRequest();
@@ -2544,7 +2544,7 @@ import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
-} from 'openapi2typescript/react-fetching-library';
+} from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const AddAccessRequest = zodSchemaAddAccessRequest();
@@ -3673,7 +3673,7 @@ exports.Operations = exports.Schemas = void 0;
  */
 var z = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
-var react_fetching_library_1 = require(\\"openapi2typescript/react-fetching-library\\");
+var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
 (function (Schemas) {
     Schemas.AddAccessRequest = zodSchemaAddAccessRequest();
@@ -4044,7 +4044,7 @@ var Operations;
         NotificationResourceCreateBehaviorGroup.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/behaviorGroups';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -4069,7 +4069,7 @@ var Operations;
         NotificationResourceGetBehaviorGroupsAffectedByRemovalOfEndpoint.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/behaviorGroups/affectedByRemovalOfEndpoint/{endpointId}'.replace('{endpointId}', params.endpointId.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4095,7 +4095,7 @@ var Operations;
         NotificationResourceUpdateBehaviorGroupActions.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/behaviorGroups/{behaviorGroupId}/actions'.replace('{behaviorGroupId}', params.behaviorGroupId.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -4121,7 +4121,7 @@ var Operations;
         NotificationResourceUpdateBehaviorGroup.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/behaviorGroups/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -4146,7 +4146,7 @@ var Operations;
         NotificationResourceDeleteBehaviorGroup.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/behaviorGroups/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4170,7 +4170,7 @@ var Operations;
         NotificationResourceFindBehaviorGroupsByBundleId.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/bundles/{bundleId}/behaviorGroups'.replace('{bundleId}', params.bundleId.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4221,7 +4221,7 @@ var Operations;
             if (params.sortBy !== undefined) {
                 query.sort_by = params.sortBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4245,7 +4245,7 @@ var Operations;
         NotificationResourceGetEventTypesAffectedByRemovalOfBehaviorGroup.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/eventTypes/affectedByRemovalOfBehaviorGroup/{behaviorGroupId}'.replace('{behaviorGroupId}', params.behaviorGroupId.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4289,7 +4289,7 @@ var Operations;
             if (params.sortBy !== undefined) {
                 query.sort_by = params.sortBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4315,7 +4315,7 @@ var Operations;
         NotificationResourceUpdateEventTypeBehaviors.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/behaviorGroups'.replace('{eventTypeId}', params.eventTypeId.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -4403,7 +4403,7 @@ var Operations;
             if (params.startDate !== undefined) {
                 query.startDate = params.startDate;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -4431,7 +4431,7 @@ var Operations;
             if (params.bundleName !== undefined) {
                 query.bundleName = params.bundleName;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Response200, 'unknown', 200)]
@@ -4455,7 +4455,7 @@ var Operations;
             if (params.includeApplications !== undefined) {
                 query.includeApplications = params.includeApplications;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Response200, 'unknown', 200)]
@@ -4475,7 +4475,7 @@ var Operations;
         NotificationResourceMarkRead.actionCreator = function (params) {
             var path = '/api/notifications/v1.0/notifications/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Response204, 'unknown', 204)]
@@ -4494,7 +4494,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/notifications-openapi.j
  */
 import * as z from 'zod';
 import { ValidateRule } from 'openapi2typescript';
-import { actionBuilder } from 'openapi2typescript/react-fetching-library';
+import { actionBuilder } from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const AddAccessRequest = zodSchemaAddAccessRequest();
@@ -5456,7 +5456,7 @@ import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
-} from 'openapi2typescript/react-fetching-library';
+} from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const Fact = zodSchemaFact();
@@ -6254,7 +6254,7 @@ exports.Operations = exports.Schemas = void 0;
  */
 var z = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
-var react_fetching_library_1 = require(\\"openapi2typescript/react-fetching-library\\");
+var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
 (function (Schemas) {
     Schemas.Fact = zodSchemaFact();
@@ -6351,7 +6351,7 @@ var Operations;
         Get.actionCreator = function () {
             var path = '/api/policies/v1.0/';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Schemas.__Empty, '__Empty', 404)]
@@ -6367,7 +6367,7 @@ var Operations;
         GetFacts.actionCreator = function () {
             var path = '/api/policies/v1.0/facts';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Response200, 'unknown', 200)]
@@ -6430,7 +6430,7 @@ var Operations;
             if (params.sortDirection !== undefined) {
                 query.sortDirection = params.sortDirection;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -6465,7 +6465,7 @@ var Operations;
             if (params.alsoStore !== undefined) {
                 query.alsoStore = params.alsoStore;
             }
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -6516,7 +6516,7 @@ var Operations;
             if (params.filterName !== undefined) {
                 query['filter[name]'] = params.filterName;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -6541,7 +6541,7 @@ var Operations;
         DeletePoliciesIds.actionCreator = function (params) {
             var path = '/api/policies/v1.0/policies/ids';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -6569,7 +6569,7 @@ var Operations;
             if (params.enabled !== undefined) {
                 query.enabled = params.enabled;
             }
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -6592,7 +6592,7 @@ var Operations;
         PostPoliciesValidate.actionCreator = function (params) {
             var path = '/api/policies/v1.0/policies/validate';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -6621,7 +6621,7 @@ var Operations;
             if (params.id !== undefined) {
                 query.id = params.id;
             }
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -6647,7 +6647,7 @@ var Operations;
         GetPoliciesById.actionCreator = function (params) {
             var path = '/api/policies/v1.0/policies/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -6670,7 +6670,7 @@ var Operations;
         DeletePoliciesById.actionCreator = function (params) {
             var path = '/api/policies/v1.0/policies/{id}'.replace('{id}', params.id.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -6698,7 +6698,7 @@ var Operations;
             if (params.enabled !== undefined) {
                 query.enabled = params.enabled;
             }
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -6762,7 +6762,7 @@ var Operations;
             if (params.sortDirection !== undefined) {
                 query.sortDirection = params.sortDirection;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -6796,7 +6796,7 @@ var Operations;
             if (params.dry !== undefined) {
                 query.dry = params.dry;
             }
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -6817,7 +6817,7 @@ var Operations;
         GetStatus.actionCreator = function () {
             var path = '/api/policies/v1.0/status';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Schemas.__Empty, '__Empty', 200)]
@@ -6836,7 +6836,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/policies-openapi.json e
  */
 import * as z from 'zod';
 import { ValidateRule } from 'openapi2typescript';
-import { actionBuilder } from 'openapi2typescript/react-fetching-library';
+import { actionBuilder } from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const Fact = zodSchemaFact();
@@ -7486,7 +7486,7 @@ import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
-} from 'openapi2typescript/react-fetching-library';
+} from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const Access = zodSchemaAccess();
@@ -10035,7 +10035,7 @@ exports.Operations = exports.Schemas = void 0;
  */
 var z = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
-var react_fetching_library_1 = require(\\"openapi2typescript/react-fetching-library\\");
+var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
 (function (Schemas) {
     Schemas.Access = zodSchemaAccess();
@@ -10483,7 +10483,7 @@ var Operations;
             if (params.offset !== undefined) {
                 query.offset = params.offset;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10554,7 +10554,7 @@ var Operations;
             if (params.orderBy !== undefined) {
                 query.order_by = params.orderBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10578,7 +10578,7 @@ var Operations;
         CreateCrossAccountRequests.actionCreator = function (params) {
             var path = '/cross-account-requests/';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -10619,7 +10619,7 @@ var Operations;
             if (params.approvedOnly !== undefined) {
                 query.approved_only = params.approvedOnly;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10646,7 +10646,7 @@ var Operations;
         PutCrossAccountRequest.actionCreator = function (params) {
             var path = '/cross-account-requests/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -10737,7 +10737,7 @@ var Operations;
             if (params.system !== undefined) {
                 query.system = params.system;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10761,7 +10761,7 @@ var Operations;
         CreateGroup.actionCreator = function (params) {
             var path = '/groups/';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -10787,7 +10787,7 @@ var Operations;
         GetGroup.actionCreator = function (params) {
             var path = '/groups/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10814,7 +10814,7 @@ var Operations;
         UpdateGroup.actionCreator = function (params) {
             var path = '/groups/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -10841,7 +10841,7 @@ var Operations;
         DeleteGroup.actionCreator = function (params) {
             var path = '/groups/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10887,7 +10887,7 @@ var Operations;
             if (params.orderBy !== undefined) {
                 query.order_by = params.orderBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -10914,7 +10914,7 @@ var Operations;
         AddPrincipalToGroup.actionCreator = function (params) {
             var path = '/groups/{uuid}/principals/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -10947,7 +10947,7 @@ var Operations;
             if (params.usernames !== undefined) {
                 query.usernames = params.usernames;
             }
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11014,7 +11014,7 @@ var Operations;
             if (params.orderBy !== undefined) {
                 query.order_by = params.orderBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11043,7 +11043,7 @@ var Operations;
         AddRoleToGroup.actionCreator = function (params) {
             var path = '/groups/{uuid}/roles/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -11076,7 +11076,7 @@ var Operations;
             if (params.roles !== undefined) {
                 query.roles = params.roles;
             }
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11156,7 +11156,7 @@ var Operations;
             if (params.allowedOnly !== undefined) {
                 query.allowed_only = params.allowedOnly;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11219,7 +11219,7 @@ var Operations;
             if (params.allowedOnly !== undefined) {
                 query.allowed_only = params.allowedOnly;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11277,7 +11277,7 @@ var Operations;
             if (params.orderBy !== undefined) {
                 query.order_by = params.orderBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11300,7 +11300,7 @@ var Operations;
         CreatePolicies.actionCreator = function (params) {
             var path = '/policies/';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -11325,7 +11325,7 @@ var Operations;
         GetPolicy.actionCreator = function (params) {
             var path = '/policies/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11351,7 +11351,7 @@ var Operations;
         UpdatePolicy.actionCreator = function (params) {
             var path = '/policies/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -11377,7 +11377,7 @@ var Operations;
         DeletePolicy.actionCreator = function (params) {
             var path = '/policies/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11445,7 +11445,7 @@ var Operations;
             if (params.orderBy !== undefined) {
                 query.order_by = params.orderBy;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11528,7 +11528,7 @@ var Operations;
             if (params.permission !== undefined) {
                 query.permission = params.permission;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11552,7 +11552,7 @@ var Operations;
         CreateRoles.actionCreator = function (params) {
             var path = '/roles/';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -11583,7 +11583,7 @@ var Operations;
             if (params.scope !== undefined) {
                 query.scope = params.scope;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11610,7 +11610,7 @@ var Operations;
         UpdateRole.actionCreator = function (params) {
             var path = '/roles/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('PUT', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('PUT', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -11637,7 +11637,7 @@ var Operations;
         DeleteRole.actionCreator = function (params) {
             var path = '/roles/{uuid}/'.replace('{uuid}', params.uuid.toString());
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11673,7 +11673,7 @@ var Operations;
             if (params.offset !== undefined) {
                 query.offset = params.offset;
             }
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11694,7 +11694,7 @@ var Operations;
         GetStatus.actionCreator = function () {
             var path = '/status/';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [
@@ -11716,7 +11716,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/rbac-openapi.json execu
  */
 import * as z from 'zod';
 import { ValidateRule } from 'openapi2typescript';
-import { actionBuilder } from 'openapi2typescript/react-fetching-library';
+import { actionBuilder } from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const Access = zodSchemaAccess();
@@ -13797,7 +13797,7 @@ import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
-} from 'openapi2typescript/react-fetching-library';
+} from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const Fruit = zodSchemaFruit();
@@ -13812,7 +13812,8 @@ export namespace Schemas {
   function zodSchemaFruit() {
       return z.object({
           description: z.string().optional().nullable(),
-          name: z.string().optional().nullable()
+          name: z.string().optional().nullable(),
+          snake_case_prop: z.string().optional().nullable()
       });
   }
 
@@ -13907,7 +13908,7 @@ exports.Operations = exports.Schemas = void 0;
  */
 var z = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
-var react_fetching_library_1 = require(\\"openapi2typescript/react-fetching-library\\");
+var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
 (function (Schemas) {
     Schemas.Fruit = zodSchemaFruit();
@@ -13916,7 +13917,8 @@ var Schemas;
     function zodSchemaFruit() {
         return z.object({
             description: z.string().optional().nullable(),
-            name: z.string().optional().nullable()
+            name: z.string().optional().nullable(),
+            snake_case_prop: z.string().optional().nullable()
         });
     }
     function zodSchemaMessage() {
@@ -13936,7 +13938,7 @@ var Operations;
         GetFruits.actionCreator = function () {
             var path = '/fruits';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('GET', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('GET', path)
                 .queryParams(query)
                 .config({
                 rules: [new openapi2typescript_1.ValidateRule(Schemas.SetFruit, 'SetFruit', 200)]
@@ -13954,7 +13956,7 @@ var Operations;
         PostFruits.actionCreator = function (params) {
             var path = '/fruits';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('POST', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('POST', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -13973,7 +13975,7 @@ var Operations;
         DeleteFruits.actionCreator = function (params) {
             var path = '/fruits';
             var query = {};
-            return (0, react_fetching_library_1.actionBuilder)('DELETE', path)
+            return (0, openapi2typescript_plugin_react_fetching_library_1.actionBuilder)('DELETE', path)
                 .queryParams(query)
                 .data(params.body)
                 .config({
@@ -13996,7 +13998,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/simple-openapi.json exe
  */
 import * as z from 'zod';
 import { ValidateRule } from 'openapi2typescript';
-import { actionBuilder } from 'openapi2typescript/react-fetching-library';
+import { actionBuilder } from 'openapi2typescript-plugin-react-fetching-library';
 
 export namespace Schemas {
   export const Fruit = zodSchemaFruit();
@@ -14008,7 +14010,8 @@ export namespace Schemas {
   function zodSchemaFruit() {
       return z.object({
           description: z.string().optional().nullable(),
-          name: z.string().optional().nullable()
+          name: z.string().optional().nullable(),
+          snake_case_prop: z.string().optional().nullable()
       });
   }
 
