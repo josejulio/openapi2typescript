@@ -2,6 +2,21 @@
   "name": "openapi2typescript-cli",
   "version": "0.5.1",
   "license": "Apache-2.0",
+  "description": "Command line utility to generate zod schemas from an OpenApi schema",
+  "keywords": [
+    "zod",
+    "openapi",
+    "swagger",
+    "generator"
+  ],
+  "homepage": "https://github.com/josejulio/openapi2typescript",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josejulio/openapi2typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/josejulio/openapi2typescript/issues"
+  },
   "bin": {
     "openapi2typescript": "./dist/src/main.js"
   },
