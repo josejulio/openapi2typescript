@@ -342,9 +342,21 @@ export class ApiBase {
                     this.appendTemp('z.number().int()');
                     break;
                 case SchemaType.STRING:
-                    this.appendTemp('z.string()');
-                    if (schema.maxLength !== undefined) {
-                        this.appendTemp(`.max(${schema.maxLength})`);
+                    switch (schema.format)
+                    {
+                        case 'date':
+                        case 'date-time':
+                            // TODO reference a shared type?
+                            this.appendTemp(
+                                'z.preprocess(arg => (typeof arg == "string" || arg instanceof Date ? new Date(arg) : undefined), z.date())');
+                            break;
+                        default:
+                            this.appendTemp('z.string()');
+                            if (schema.maxLength !== undefined) {
+                                this.appendTemp(`.max(${schema.maxLength})`);
+                            }
+
+                            break;
                     }
 
                     break;
