@@ -34,13 +34,13 @@
   "dependencies": {
     "camelcase": "5.3.1",
     "commander": "7.2.0",
-    "eslint": "7.28.0",
     "is-url": "1.2.4",
     "node-fetch": "^2.6.1",
     "prettier": "2.3.1"
   },
   "devDependencies": {
-    "assert-never": "1.2.1"
+    "assert-never": "1.2.1",
+    "eslint": "7.28.0"
   },
   "publishConfig": {
     "access": "public"
