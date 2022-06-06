@@ -17,7 +17,7 @@ jobs:
           check-latest: true
       - uses: bahmutov/npm-install@v1
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test:ci
       - run: yarn build
       - uses: codecov/codecov-action@v1
         with:
