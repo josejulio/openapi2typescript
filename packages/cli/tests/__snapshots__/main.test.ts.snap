@@ -4,7 +4,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/integrations-openapi.js
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidatedResponse } from \\"openapi2typescript\\";
 import { Action } from \\"react-fetching-library\\";
 import { ValidateRule } from \\"openapi2typescript\\";
@@ -986,7 +986,7 @@ exports.Operations = exports.Schemas = void 0;
 /**
  * Generated code, DO NOT modify directly.
  */
-var z = require(\\"zod\\");
+var zod_1 = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
 var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
@@ -1033,126 +1033,126 @@ var Schemas;
     Schemas.WebhookProperties = zodSchemaWebhookProperties();
     Schemas.__Empty = zodSchema__Empty();
     function zodSchemaAddAccessRequest() {
-        return z.object({
+        return zod_1.z.object({
             application_id: zodSchemaUUID().optional().nullable(),
-            role: z.string().optional().nullable(),
+            role: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaAddApplicationRequest() {
-        return z.object({
+        return zod_1.z.object({
             bundle_id: zodSchemaUUID(),
-            display_name: z.string(),
-            name: z.string(),
-            owner_role: z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
+            name: zod_1.z.string(),
+            owner_role: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaAggregationEmailTemplate() {
-        return z.object({
+        return zod_1.z.object({
             application: zodSchemaApplication().optional().nullable(),
             application_id: zodSchemaUUID().optional().nullable(),
             body_template: zodSchemaTemplate().optional().nullable(),
             body_template_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
+            created: zod_1.z.string().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
             subject_template: zodSchemaTemplate().optional().nullable(),
             subject_template_id: zodSchemaUUID(),
             subscription_type: zodSchemaEmailSubscriptionType(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaApplication() {
-        return z.object({
+        return zod_1.z.object({
             bundle_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
-            display_name: z.string(),
+            created: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            updated: z.string().optional().nullable(),
+            name: zod_1.z.string(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaApplication1() {
-        return z.object({
-            display_name: z.string(),
+        return zod_1.z.object({
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID(),
         });
     }
     function zodSchemaBasicAuthentication() {
-        return z.object({
-            password: z.string().optional().nullable(),
-            username: z.string().optional().nullable(),
+        return zod_1.z.object({
+            password: zod_1.z.string().optional().nullable(),
+            username: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaBehaviorGroup() {
-        return z.object({
-            actions: z.array(zodSchemaBehaviorGroupAction()).optional().nullable(),
+        return zod_1.z.object({
+            actions: zod_1.z.array(zodSchemaBehaviorGroupAction()).optional().nullable(),
             bundle: zodSchemaBundle().optional().nullable(),
             bundle_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
-            default_behavior: z.boolean().optional().nullable(),
-            display_name: z.string(),
+            created: zod_1.z.string().optional().nullable(),
+            default_behavior: zod_1.z.boolean().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaBehaviorGroupAction() {
-        return z.object({
-            created: z.string().optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
             endpoint: zodSchemaEndpoint().optional().nullable(),
             id: zodSchemaBehaviorGroupActionId().optional().nullable(),
         });
     }
     function zodSchemaBehaviorGroupActionId() {
-        return z.object({
+        return zod_1.z.object({
             behaviorGroupId: zodSchemaUUID(),
             endpointId: zodSchemaUUID(),
         });
     }
     function zodSchemaBundle() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            display_name: z.string(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            updated: z.string().optional().nullable(),
+            name: zod_1.z.string(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaCamelProperties() {
-        return z.object({
+        return zod_1.z.object({
             basic_authentication: zodSchemaBasicAuthentication()
                 .optional()
                 .nullable(),
-            disable_ssl_verification: z.boolean(),
-            extras: z.record(z.string()).optional().nullable(),
-            secret_token: z.string().optional().nullable(),
-            sub_type: z.string().optional().nullable(),
-            url: z.string(),
+            disable_ssl_verification: zod_1.z.boolean(),
+            extras: zod_1.z.record(zod_1.z.string()).optional().nullable(),
+            secret_token: zod_1.z.string().optional().nullable(),
+            sub_type: zod_1.z.string().optional().nullable(),
+            url: zod_1.z.string(),
         });
     }
     function zodSchemaCurrentStatus() {
-        return z.object({
-            end_time: z.string().optional().nullable(),
-            start_time: z.string().optional().nullable(),
+        return zod_1.z.object({
+            end_time: zod_1.z.string().optional().nullable(),
+            start_time: zod_1.z.string().optional().nullable(),
             status: zodSchemaStatus(),
         });
     }
     function zodSchemaEmailSubscriptionProperties() {
-        return z.object({
+        return zod_1.z.object({
             group_id: zodSchemaUUID().optional().nullable(),
-            ignore_preferences: z.boolean(),
-            only_admins: z.boolean(),
+            ignore_preferences: zod_1.z.boolean(),
+            only_admins: zod_1.z.boolean(),
         });
     }
     function zodSchemaEmailSubscriptionType() {
-        return z.enum([\\"INSTANT\\", \\"DAILY\\"]);
+        return zod_1.z.enum([\\"INSTANT\\", \\"DAILY\\"]);
     }
     function zodSchemaEndpoint() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            description: z.string(),
-            enabled: z.boolean().optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            description: zod_1.z.string(),
+            enabled: zod_1.z.boolean().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            properties: z
+            name: zod_1.z.string(),
+            properties: zod_1.z
                 .union([
                 zodSchemaWebhookProperties(),
                 zodSchemaEmailSubscriptionProperties(),
@@ -1160,190 +1160,190 @@ var Schemas;
             ])
                 .optional()
                 .nullable(),
-            sub_type: z.string().optional().nullable(),
+            sub_type: zod_1.z.string().optional().nullable(),
             type: zodSchemaEndpointType(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaEndpointPage() {
-        return z.object({
-            data: z.array(zodSchemaEndpoint()),
-            links: z.record(z.string()),
+        return zod_1.z.object({
+            data: zod_1.z.array(zodSchemaEndpoint()),
+            links: zod_1.z.record(zod_1.z.string()),
             meta: zodSchemaMeta(),
         });
     }
     function zodSchemaEndpointProperties() {
-        return z.unknown();
+        return zod_1.z.unknown();
     }
     function zodSchemaEndpointType() {
-        return z.enum([\\"webhook\\", \\"email_subscription\\", \\"default\\", \\"camel\\"]);
+        return zod_1.z.enum([\\"webhook\\", \\"email_subscription\\", \\"default\\", \\"camel\\"]);
     }
     function zodSchemaEnvironment() {
-        return z.enum([\\"PROD\\", \\"STAGE\\", \\"EPHEMERAL\\", \\"LOCAL_SERVER\\"]);
+        return zod_1.z.enum([\\"PROD\\", \\"STAGE\\", \\"EPHEMERAL\\", \\"LOCAL_SERVER\\"]);
     }
     function zodSchemaEventLogEntry() {
-        return z.object({
-            actions: z.array(zodSchemaEventLogEntryAction()),
-            application: z.string(),
-            bundle: z.string(),
-            created: z.string(),
-            event_type: z.string(),
+        return zod_1.z.object({
+            actions: zod_1.z.array(zodSchemaEventLogEntryAction()),
+            application: zod_1.z.string(),
+            bundle: zod_1.z.string(),
+            created: zod_1.z.string(),
+            event_type: zod_1.z.string(),
             id: zodSchemaUUID(),
-            payload: z.string().optional().nullable(),
+            payload: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaEventLogEntryAction() {
-        return z.object({
-            details: z.record(z.unknown()).optional().nullable(),
+        return zod_1.z.object({
+            details: zod_1.z.record(zod_1.z.unknown()).optional().nullable(),
             endpoint_id: zodSchemaUUID().optional().nullable(),
-            endpoint_sub_type: z.string().optional().nullable(),
+            endpoint_sub_type: zod_1.z.string().optional().nullable(),
             endpoint_type: zodSchemaEndpointType(),
             id: zodSchemaUUID(),
-            invocation_result: z.boolean(),
+            invocation_result: zod_1.z.boolean(),
         });
     }
     function zodSchemaEventType() {
-        return z.object({
+        return zod_1.z.object({
             application: zodSchemaApplication().optional().nullable(),
             application_id: zodSchemaUUID(),
-            description: z.string().optional().nullable(),
-            display_name: z.string(),
+            description: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaFacet() {
-        return z.object({
-            children: z
-                .array(z.lazy(function () { return zodSchemaFacet(); }))
+        return zod_1.z.object({
+            children: zod_1.z
+                .array(zod_1.z.lazy(function () { return zodSchemaFacet(); }))
                 .optional()
                 .nullable(),
-            displayName: z.string(),
-            id: z.string(),
-            name: z.string(),
+            displayName: zod_1.z.string(),
+            id: zod_1.z.string(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaHttpType() {
-        return z.enum([\\"GET\\", \\"POST\\", \\"PUT\\"]);
+        return zod_1.z.enum([\\"GET\\", \\"POST\\", \\"PUT\\"]);
     }
     function zodSchemaInstantEmailTemplate() {
-        return z.object({
+        return zod_1.z.object({
             body_template: zodSchemaTemplate().optional().nullable(),
             body_template_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
+            created: zod_1.z.string().optional().nullable(),
             event_type: zodSchemaEventType().optional().nullable(),
             event_type_id: zodSchemaUUID().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
             subject_template: zodSchemaTemplate().optional().nullable(),
             subject_template_id: zodSchemaUUID(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaInternalApplicationUserPermission() {
-        return z.object({
-            application_display_name: z.string(),
+        return zod_1.z.object({
+            application_display_name: zod_1.z.string(),
             application_id: zodSchemaUUID(),
-            role: z.string(),
+            role: zod_1.z.string(),
         });
     }
     function zodSchemaInternalRoleAccess() {
-        return z.object({
+        return zod_1.z.object({
             application_id: zodSchemaUUID(),
             id: zodSchemaUUID().optional().nullable(),
-            role: z.string(),
+            role: zod_1.z.string(),
         });
     }
     function zodSchemaInternalUserPermissions() {
-        return z.object({
-            applications: z.array(zodSchemaApplication1()),
-            is_admin: z.boolean(),
-            roles: z.array(z.string()),
+        return zod_1.z.object({
+            applications: zod_1.z.array(zodSchemaApplication1()),
+            is_admin: zod_1.z.boolean(),
+            roles: zod_1.z.array(zod_1.z.string()),
         });
     }
     function zodSchemaMeta() {
-        return z.object({
-            count: z.number().int(),
+        return zod_1.z.object({
+            count: zod_1.z.number().int(),
         });
     }
     function zodSchemaNotificationHistory() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            details: z.record(z.unknown()).optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            details: zod_1.z.record(zod_1.z.unknown()).optional().nullable(),
             endpointId: zodSchemaUUID().optional().nullable(),
-            endpointSubType: z.string().optional().nullable(),
+            endpointSubType: zod_1.z.string().optional().nullable(),
             endpointType: zodSchemaEndpointType().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
-            invocationResult: z.boolean(),
-            invocationTime: z.number().int(),
+            invocationResult: zod_1.z.boolean(),
+            invocationTime: zod_1.z.number().int(),
         });
     }
     function zodSchemaPageEventLogEntry() {
-        return z.object({
-            data: z.array(zodSchemaEventLogEntry()),
-            links: z.record(z.string()),
+        return zod_1.z.object({
+            data: zod_1.z.array(zodSchemaEventLogEntry()),
+            links: zod_1.z.record(zod_1.z.string()),
             meta: zodSchemaMeta(),
         });
     }
     function zodSchemaPageEventType() {
-        return z.object({
-            data: z.array(zodSchemaEventType()),
-            links: z.record(z.string()),
+        return zod_1.z.object({
+            data: zod_1.z.array(zodSchemaEventType()),
+            links: zod_1.z.record(zod_1.z.string()),
             meta: zodSchemaMeta(),
         });
     }
     function zodSchemaRenderEmailTemplateRequest() {
-        return z.object({
-            body_template: z.string(),
-            payload: z.string(),
-            subject_template: z.string(),
+        return zod_1.z.object({
+            body_template: zod_1.z.string(),
+            payload: zod_1.z.string(),
+            subject_template: zod_1.z.string(),
         });
     }
     function zodSchemaRequestDefaultBehaviorGroupPropertyList() {
-        return z.object({
-            ignore_preferences: z.boolean(),
-            only_admins: z.boolean(),
+        return zod_1.z.object({
+            ignore_preferences: zod_1.z.boolean(),
+            only_admins: zod_1.z.boolean(),
         });
     }
     function zodSchemaRequestEmailSubscriptionProperties() {
-        return z.object({
+        return zod_1.z.object({
             group_id: zodSchemaUUID().optional().nullable(),
-            only_admins: z.boolean(),
+            only_admins: zod_1.z.boolean(),
         });
     }
     function zodSchemaServerInfo() {
-        return z.object({
+        return zod_1.z.object({
             environment: zodSchemaEnvironment().optional().nullable(),
         });
     }
     function zodSchemaStatus() {
-        return z.enum([\\"UP\\", \\"MAINTENANCE\\"]);
+        return zod_1.z.enum([\\"UP\\", \\"MAINTENANCE\\"]);
     }
     function zodSchemaTemplate() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            data: z.string(),
-            description: z.string(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            data: zod_1.z.string(),
+            description: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            updated: z.string().optional().nullable(),
+            name: zod_1.z.string(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaUUID() {
-        return z.string();
+        return zod_1.z.string();
     }
     function zodSchemaWebhookProperties() {
-        return z.object({
+        return zod_1.z.object({
             basic_authentication: zodSchemaBasicAuthentication()
                 .optional()
                 .nullable(),
-            disable_ssl_verification: z.boolean(),
+            disable_ssl_verification: zod_1.z.boolean(),
             method: zodSchemaHttpType(),
-            secret_token: z.string().optional().nullable(),
-            url: z.string(),
+            secret_token: zod_1.z.string().optional().nullable(),
+            url: zod_1.z.string(),
         });
     }
     function zodSchema__Empty() {
-        return z.string().max(0).optional();
+        return zod_1.z.string().max(0).optional();
     }
 })(Schemas = exports.Schemas || (exports.Schemas = {}));
 var Operations;
@@ -1351,13 +1351,13 @@ var Operations;
     // GET /endpoints
     var EndpointResourceGetEndpoints;
     (function (EndpointResourceGetEndpoints) {
-        var Active = z.boolean();
-        var Limit = z.number().int();
-        var Name = z.string();
-        var Offset = z.number().int();
-        var PageNumber = z.number().int();
-        var SortBy = z.string();
-        var Type = z.array(z.string());
+        var Active = zod_1.z.boolean();
+        var Limit = zod_1.z.number().int();
+        var Name = zod_1.z.string();
+        var Offset = zod_1.z.number().int();
+        var PageNumber = zod_1.z.number().int();
+        var SortBy = zod_1.z.string();
+        var Type = zod_1.z.array(zod_1.z.string());
         /*
      Params
     'active'?:Active,
@@ -1431,9 +1431,9 @@ var Operations;
     // PUT /endpoints/email/subscription/{bundleName}/{applicationName}/{type}
     var EndpointResourceSubscribeEmail;
     (function (EndpointResourceSubscribeEmail) {
-        var ApplicationName = z.string();
-        var BundleName = z.string();
-        var Response200 = z.boolean();
+        var ApplicationName = zod_1.z.string();
+        var BundleName = zod_1.z.string();
+        var Response200 = zod_1.z.boolean();
         /*
      Params
     'applicationName':ApplicationName,
@@ -1461,9 +1461,9 @@ var Operations;
     // DELETE /endpoints/email/subscription/{bundleName}/{applicationName}/{type}
     var EndpointResourceUnsubscribeEmail;
     (function (EndpointResourceUnsubscribeEmail) {
-        var ApplicationName = z.string();
-        var BundleName = z.string();
-        var Response200 = z.boolean();
+        var ApplicationName = zod_1.z.string();
+        var BundleName = zod_1.z.string();
+        var Response200 = zod_1.z.boolean();
         /*
      Params
     'applicationName':ApplicationName,
@@ -1536,7 +1536,7 @@ var Operations;
     // PUT /endpoints/{id}
     var EndpointResourceUpdateEndpoint;
     (function (EndpointResourceUpdateEndpoint) {
-        var Response200 = z.string();
+        var Response200 = zod_1.z.string();
         /*
      Params
     'id':Schemas.UUID,
@@ -1583,7 +1583,7 @@ var Operations;
     // PUT /endpoints/{id}/enable
     var EndpointResourceEnableEndpoint;
     (function (EndpointResourceEnableEndpoint) {
-        var Response200 = z.string();
+        var Response200 = zod_1.z.string();
         /*
      Params
     'id':Schemas.UUID
@@ -1628,12 +1628,12 @@ var Operations;
     // GET /endpoints/{id}/history
     var EndpointResourceGetEndpointHistory;
     (function (EndpointResourceGetEndpointHistory) {
-        var IncludeDetail = z.boolean();
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var PageNumber = z.number().int();
-        var SortBy = z.string();
-        var Response200 = z.array(Schemas.NotificationHistory);
+        var IncludeDetail = zod_1.z.boolean();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var PageNumber = zod_1.z.number().int();
+        var SortBy = zod_1.z.string();
+        var Response200 = zod_1.z.array(Schemas.NotificationHistory);
         /*
      Params
     'id':Schemas.UUID,
@@ -1676,7 +1676,7 @@ var Operations;
     // GET /endpoints/{id}/history/{history_id}/details
     var EndpointResourceGetDetailedEndpointHistory;
     (function (EndpointResourceGetDetailedEndpointHistory) {
-        var Response200 = z.string();
+        var Response200 = zod_1.z.string();
         /*
      Params
     'historyId':Schemas.UUID,
@@ -1707,7 +1707,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/integrations-openapi.js
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidateRule } from \\"openapi2typescript\\";
 import { actionBuilder } from \\"openapi2typescript-plugin-react-fetching-library\\";
 
@@ -2534,7 +2534,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/notifications-openapi.j
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidatedResponse } from \\"openapi2typescript\\";
 import { Action } from \\"react-fetching-library\\";
 import { ValidateRule } from \\"openapi2typescript\\";
@@ -3667,7 +3667,7 @@ exports.Operations = exports.Schemas = void 0;
 /**
  * Generated code, DO NOT modify directly.
  */
-var z = require(\\"zod\\");
+var zod_1 = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
 var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
@@ -3714,126 +3714,126 @@ var Schemas;
     Schemas.WebhookProperties = zodSchemaWebhookProperties();
     Schemas.__Empty = zodSchema__Empty();
     function zodSchemaAddAccessRequest() {
-        return z.object({
+        return zod_1.z.object({
             application_id: zodSchemaUUID().optional().nullable(),
-            role: z.string().optional().nullable(),
+            role: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaAddApplicationRequest() {
-        return z.object({
+        return zod_1.z.object({
             bundle_id: zodSchemaUUID(),
-            display_name: z.string(),
-            name: z.string(),
-            owner_role: z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
+            name: zod_1.z.string(),
+            owner_role: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaAggregationEmailTemplate() {
-        return z.object({
+        return zod_1.z.object({
             application: zodSchemaApplication().optional().nullable(),
             application_id: zodSchemaUUID().optional().nullable(),
             body_template: zodSchemaTemplate().optional().nullable(),
             body_template_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
+            created: zod_1.z.string().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
             subject_template: zodSchemaTemplate().optional().nullable(),
             subject_template_id: zodSchemaUUID(),
             subscription_type: zodSchemaEmailSubscriptionType(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaApplication() {
-        return z.object({
+        return zod_1.z.object({
             bundle_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
-            display_name: z.string(),
+            created: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            updated: z.string().optional().nullable(),
+            name: zod_1.z.string(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaApplication1() {
-        return z.object({
-            display_name: z.string(),
+        return zod_1.z.object({
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID(),
         });
     }
     function zodSchemaBasicAuthentication() {
-        return z.object({
-            password: z.string().optional().nullable(),
-            username: z.string().optional().nullable(),
+        return zod_1.z.object({
+            password: zod_1.z.string().optional().nullable(),
+            username: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaBehaviorGroup() {
-        return z.object({
-            actions: z.array(zodSchemaBehaviorGroupAction()).optional().nullable(),
+        return zod_1.z.object({
+            actions: zod_1.z.array(zodSchemaBehaviorGroupAction()).optional().nullable(),
             bundle: zodSchemaBundle().optional().nullable(),
             bundle_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
-            default_behavior: z.boolean().optional().nullable(),
-            display_name: z.string(),
+            created: zod_1.z.string().optional().nullable(),
+            default_behavior: zod_1.z.boolean().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaBehaviorGroupAction() {
-        return z.object({
-            created: z.string().optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
             endpoint: zodSchemaEndpoint().optional().nullable(),
             id: zodSchemaBehaviorGroupActionId().optional().nullable(),
         });
     }
     function zodSchemaBehaviorGroupActionId() {
-        return z.object({
+        return zod_1.z.object({
             behaviorGroupId: zodSchemaUUID(),
             endpointId: zodSchemaUUID(),
         });
     }
     function zodSchemaBundle() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            display_name: z.string(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            updated: z.string().optional().nullable(),
+            name: zod_1.z.string(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaCamelProperties() {
-        return z.object({
+        return zod_1.z.object({
             basic_authentication: zodSchemaBasicAuthentication()
                 .optional()
                 .nullable(),
-            disable_ssl_verification: z.boolean(),
-            extras: z.record(z.string()).optional().nullable(),
-            secret_token: z.string().optional().nullable(),
-            sub_type: z.string().optional().nullable(),
-            url: z.string(),
+            disable_ssl_verification: zod_1.z.boolean(),
+            extras: zod_1.z.record(zod_1.z.string()).optional().nullable(),
+            secret_token: zod_1.z.string().optional().nullable(),
+            sub_type: zod_1.z.string().optional().nullable(),
+            url: zod_1.z.string(),
         });
     }
     function zodSchemaCurrentStatus() {
-        return z.object({
-            end_time: z.string().optional().nullable(),
-            start_time: z.string().optional().nullable(),
+        return zod_1.z.object({
+            end_time: zod_1.z.string().optional().nullable(),
+            start_time: zod_1.z.string().optional().nullable(),
             status: zodSchemaStatus(),
         });
     }
     function zodSchemaEmailSubscriptionProperties() {
-        return z.object({
+        return zod_1.z.object({
             group_id: zodSchemaUUID().optional().nullable(),
-            ignore_preferences: z.boolean(),
-            only_admins: z.boolean(),
+            ignore_preferences: zod_1.z.boolean(),
+            only_admins: zod_1.z.boolean(),
         });
     }
     function zodSchemaEmailSubscriptionType() {
-        return z.enum([\\"INSTANT\\", \\"DAILY\\"]);
+        return zod_1.z.enum([\\"INSTANT\\", \\"DAILY\\"]);
     }
     function zodSchemaEndpoint() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            description: z.string(),
-            enabled: z.boolean().optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            description: zod_1.z.string(),
+            enabled: zod_1.z.boolean().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            properties: z
+            name: zod_1.z.string(),
+            properties: zod_1.z
                 .union([
                 zodSchemaWebhookProperties(),
                 zodSchemaEmailSubscriptionProperties(),
@@ -3841,190 +3841,190 @@ var Schemas;
             ])
                 .optional()
                 .nullable(),
-            sub_type: z.string().optional().nullable(),
+            sub_type: zod_1.z.string().optional().nullable(),
             type: zodSchemaEndpointType(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaEndpointPage() {
-        return z.object({
-            data: z.array(zodSchemaEndpoint()),
-            links: z.record(z.string()),
+        return zod_1.z.object({
+            data: zod_1.z.array(zodSchemaEndpoint()),
+            links: zod_1.z.record(zod_1.z.string()),
             meta: zodSchemaMeta(),
         });
     }
     function zodSchemaEndpointProperties() {
-        return z.unknown();
+        return zod_1.z.unknown();
     }
     function zodSchemaEndpointType() {
-        return z.enum([\\"webhook\\", \\"email_subscription\\", \\"default\\", \\"camel\\"]);
+        return zod_1.z.enum([\\"webhook\\", \\"email_subscription\\", \\"default\\", \\"camel\\"]);
     }
     function zodSchemaEnvironment() {
-        return z.enum([\\"PROD\\", \\"STAGE\\", \\"EPHEMERAL\\", \\"LOCAL_SERVER\\"]);
+        return zod_1.z.enum([\\"PROD\\", \\"STAGE\\", \\"EPHEMERAL\\", \\"LOCAL_SERVER\\"]);
     }
     function zodSchemaEventLogEntry() {
-        return z.object({
-            actions: z.array(zodSchemaEventLogEntryAction()),
-            application: z.string(),
-            bundle: z.string(),
-            created: z.string(),
-            event_type: z.string(),
+        return zod_1.z.object({
+            actions: zod_1.z.array(zodSchemaEventLogEntryAction()),
+            application: zod_1.z.string(),
+            bundle: zod_1.z.string(),
+            created: zod_1.z.string(),
+            event_type: zod_1.z.string(),
             id: zodSchemaUUID(),
-            payload: z.string().optional().nullable(),
+            payload: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaEventLogEntryAction() {
-        return z.object({
-            details: z.record(z.unknown()).optional().nullable(),
+        return zod_1.z.object({
+            details: zod_1.z.record(zod_1.z.unknown()).optional().nullable(),
             endpoint_id: zodSchemaUUID().optional().nullable(),
-            endpoint_sub_type: z.string().optional().nullable(),
+            endpoint_sub_type: zod_1.z.string().optional().nullable(),
             endpoint_type: zodSchemaEndpointType(),
             id: zodSchemaUUID(),
-            invocation_result: z.boolean(),
+            invocation_result: zod_1.z.boolean(),
         });
     }
     function zodSchemaEventType() {
-        return z.object({
+        return zod_1.z.object({
             application: zodSchemaApplication().optional().nullable(),
             application_id: zodSchemaUUID(),
-            description: z.string().optional().nullable(),
-            display_name: z.string(),
+            description: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaFacet() {
-        return z.object({
-            children: z
-                .array(z.lazy(function () { return zodSchemaFacet(); }))
+        return zod_1.z.object({
+            children: zod_1.z
+                .array(zod_1.z.lazy(function () { return zodSchemaFacet(); }))
                 .optional()
                 .nullable(),
-            displayName: z.string(),
-            id: z.string(),
-            name: z.string(),
+            displayName: zod_1.z.string(),
+            id: zod_1.z.string(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaHttpType() {
-        return z.enum([\\"GET\\", \\"POST\\", \\"PUT\\"]);
+        return zod_1.z.enum([\\"GET\\", \\"POST\\", \\"PUT\\"]);
     }
     function zodSchemaInstantEmailTemplate() {
-        return z.object({
+        return zod_1.z.object({
             body_template: zodSchemaTemplate().optional().nullable(),
             body_template_id: zodSchemaUUID(),
-            created: z.string().optional().nullable(),
+            created: zod_1.z.string().optional().nullable(),
             event_type: zodSchemaEventType().optional().nullable(),
             event_type_id: zodSchemaUUID().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
             subject_template: zodSchemaTemplate().optional().nullable(),
             subject_template_id: zodSchemaUUID(),
-            updated: z.string().optional().nullable(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaInternalApplicationUserPermission() {
-        return z.object({
-            application_display_name: z.string(),
+        return zod_1.z.object({
+            application_display_name: zod_1.z.string(),
             application_id: zodSchemaUUID(),
-            role: z.string(),
+            role: zod_1.z.string(),
         });
     }
     function zodSchemaInternalRoleAccess() {
-        return z.object({
+        return zod_1.z.object({
             application_id: zodSchemaUUID(),
             id: zodSchemaUUID().optional().nullable(),
-            role: z.string(),
+            role: zod_1.z.string(),
         });
     }
     function zodSchemaInternalUserPermissions() {
-        return z.object({
-            applications: z.array(zodSchemaApplication1()),
-            is_admin: z.boolean(),
-            roles: z.array(z.string()),
+        return zod_1.z.object({
+            applications: zod_1.z.array(zodSchemaApplication1()),
+            is_admin: zod_1.z.boolean(),
+            roles: zod_1.z.array(zod_1.z.string()),
         });
     }
     function zodSchemaMeta() {
-        return z.object({
-            count: z.number().int(),
+        return zod_1.z.object({
+            count: zod_1.z.number().int(),
         });
     }
     function zodSchemaNotificationHistory() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            details: z.record(z.unknown()).optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            details: zod_1.z.record(zod_1.z.unknown()).optional().nullable(),
             endpointId: zodSchemaUUID().optional().nullable(),
-            endpointSubType: z.string().optional().nullable(),
+            endpointSubType: zod_1.z.string().optional().nullable(),
             endpointType: zodSchemaEndpointType().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
-            invocationResult: z.boolean(),
-            invocationTime: z.number().int(),
+            invocationResult: zod_1.z.boolean(),
+            invocationTime: zod_1.z.number().int(),
         });
     }
     function zodSchemaPageEventLogEntry() {
-        return z.object({
-            data: z.array(zodSchemaEventLogEntry()),
-            links: z.record(z.string()),
+        return zod_1.z.object({
+            data: zod_1.z.array(zodSchemaEventLogEntry()),
+            links: zod_1.z.record(zod_1.z.string()),
             meta: zodSchemaMeta(),
         });
     }
     function zodSchemaPageEventType() {
-        return z.object({
-            data: z.array(zodSchemaEventType()),
-            links: z.record(z.string()),
+        return zod_1.z.object({
+            data: zod_1.z.array(zodSchemaEventType()),
+            links: zod_1.z.record(zod_1.z.string()),
             meta: zodSchemaMeta(),
         });
     }
     function zodSchemaRenderEmailTemplateRequest() {
-        return z.object({
-            body_template: z.string(),
-            payload: z.string(),
-            subject_template: z.string(),
+        return zod_1.z.object({
+            body_template: zod_1.z.string(),
+            payload: zod_1.z.string(),
+            subject_template: zod_1.z.string(),
         });
     }
     function zodSchemaRequestDefaultBehaviorGroupPropertyList() {
-        return z.object({
-            ignore_preferences: z.boolean(),
-            only_admins: z.boolean(),
+        return zod_1.z.object({
+            ignore_preferences: zod_1.z.boolean(),
+            only_admins: zod_1.z.boolean(),
         });
     }
     function zodSchemaRequestEmailSubscriptionProperties() {
-        return z.object({
+        return zod_1.z.object({
             group_id: zodSchemaUUID().optional().nullable(),
-            only_admins: z.boolean(),
+            only_admins: zod_1.z.boolean(),
         });
     }
     function zodSchemaServerInfo() {
-        return z.object({
+        return zod_1.z.object({
             environment: zodSchemaEnvironment().optional().nullable(),
         });
     }
     function zodSchemaStatus() {
-        return z.enum([\\"UP\\", \\"MAINTENANCE\\"]);
+        return zod_1.z.enum([\\"UP\\", \\"MAINTENANCE\\"]);
     }
     function zodSchemaTemplate() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            data: z.string(),
-            description: z.string(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            data: zod_1.z.string(),
+            description: zod_1.z.string(),
             id: zodSchemaUUID().optional().nullable(),
-            name: z.string(),
-            updated: z.string().optional().nullable(),
+            name: zod_1.z.string(),
+            updated: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaUUID() {
-        return z.string();
+        return zod_1.z.string();
     }
     function zodSchemaWebhookProperties() {
-        return z.object({
+        return zod_1.z.object({
             basic_authentication: zodSchemaBasicAuthentication()
                 .optional()
                 .nullable(),
-            disable_ssl_verification: z.boolean(),
+            disable_ssl_verification: zod_1.z.boolean(),
             method: zodSchemaHttpType(),
-            secret_token: z.string().optional().nullable(),
-            url: z.string(),
+            secret_token: zod_1.z.string().optional().nullable(),
+            url: zod_1.z.string(),
         });
     }
     function zodSchema__Empty() {
-        return z.string().max(0).optional();
+        return zod_1.z.string().max(0).optional();
     }
 })(Schemas = exports.Schemas || (exports.Schemas = {}));
 var Operations;
@@ -4057,7 +4057,7 @@ var Operations;
     // Retrieve the behavior groups affected by the removal of an endpoint.
     var NotificationResourceGetBehaviorGroupsAffectedByRemovalOfEndpoint;
     (function (NotificationResourceGetBehaviorGroupsAffectedByRemovalOfEndpoint) {
-        var Response200 = z.array(Schemas.BehaviorGroup);
+        var Response200 = zod_1.z.array(Schemas.BehaviorGroup);
         /*
      Params
     'endpointId':Schemas.UUID
@@ -4081,8 +4081,8 @@ var Operations;
     // Update the list of actions of a behavior group.
     var NotificationResourceUpdateBehaviorGroupActions;
     (function (NotificationResourceUpdateBehaviorGroupActions) {
-        var Body = z.array(z.string());
-        var Response200 = z.string();
+        var Body = zod_1.z.array(zod_1.z.string());
+        var Response200 = zod_1.z.string();
         /*
      Params
     'behaviorGroupId':Schemas.UUID,
@@ -4108,7 +4108,7 @@ var Operations;
     // Update a behavior group.
     var NotificationResourceUpdateBehaviorGroup;
     (function (NotificationResourceUpdateBehaviorGroup) {
-        var Response200 = z.boolean();
+        var Response200 = zod_1.z.boolean();
         /*
      Params
     'id':Schemas.UUID,
@@ -4134,7 +4134,7 @@ var Operations;
     // Delete a behavior group.
     var NotificationResourceDeleteBehaviorGroup;
     (function (NotificationResourceDeleteBehaviorGroup) {
-        var Response200 = z.boolean();
+        var Response200 = zod_1.z.boolean();
         /*
      Params
     'id':Schemas.UUID
@@ -4158,7 +4158,7 @@ var Operations;
     // Retrieve the behavior groups of a bundle.
     var NotificationResourceFindBehaviorGroupsByBundleId;
     (function (NotificationResourceFindBehaviorGroupsByBundleId) {
-        var Response200 = z.array(Schemas.BehaviorGroup);
+        var Response200 = zod_1.z.array(Schemas.BehaviorGroup);
         /*
      Params
     'bundleId':Schemas.UUID
@@ -4182,11 +4182,11 @@ var Operations;
     // Retrieve all event types. The returned list can be filtered by bundle or application.
     var NotificationResourceGetEventTypes;
     (function (NotificationResourceGetEventTypes) {
-        var ApplicationIds = z.array(z.string());
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var PageNumber = z.number().int();
-        var SortBy = z.string();
+        var ApplicationIds = zod_1.z.array(zod_1.z.string());
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var PageNumber = zod_1.z.number().int();
+        var SortBy = zod_1.z.string();
         /*
      Params
     'applicationIds'?:ApplicationIds,
@@ -4234,7 +4234,7 @@ var Operations;
     // Retrieve the event types affected by the removal of a behavior group.
     var NotificationResourceGetEventTypesAffectedByRemovalOfBehaviorGroup;
     (function (NotificationResourceGetEventTypesAffectedByRemovalOfBehaviorGroup) {
-        var Response200 = z.array(Schemas.EventType);
+        var Response200 = zod_1.z.array(Schemas.EventType);
         /*
      Params
     'behaviorGroupId':Schemas.UUID
@@ -4258,11 +4258,11 @@ var Operations;
     // Retrieve the behavior groups linked to an event type.
     var NotificationResourceGetLinkedBehaviorGroups;
     (function (NotificationResourceGetLinkedBehaviorGroups) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var PageNumber = z.number().int();
-        var SortBy = z.string();
-        var Response200 = z.array(Schemas.BehaviorGroup);
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var PageNumber = zod_1.z.number().int();
+        var SortBy = zod_1.z.string();
+        var Response200 = zod_1.z.array(Schemas.BehaviorGroup);
         /*
      Params
     'eventTypeId':Schemas.UUID,
@@ -4302,8 +4302,8 @@ var Operations;
     // Update the list of behavior groups of an event type.
     var NotificationResourceUpdateEventTypeBehaviors;
     (function (NotificationResourceUpdateEventTypeBehaviors) {
-        var Body = z.array(z.string());
-        var Response200 = z.string();
+        var Body = zod_1.z.array(zod_1.z.string());
+        var Response200 = zod_1.z.string();
         /*
      Params
     'eventTypeId':Schemas.UUID,
@@ -4329,19 +4329,19 @@ var Operations;
     // Retrieve the event log entries.
     var EventResourceGetEvents;
     (function (EventResourceGetEvents) {
-        var AppIds = z.array(z.string());
-        var BundleIds = z.array(z.string());
-        var EndDate = z.string();
-        var EndpointTypes = z.array(z.string());
-        var EventTypeDisplayName = z.string();
-        var IncludeActions = z.boolean();
-        var IncludeDetails = z.boolean();
-        var IncludePayload = z.boolean();
-        var InvocationResults = z.array(z.boolean());
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var SortBy = z.string();
-        var StartDate = z.string();
+        var AppIds = zod_1.z.array(zod_1.z.string());
+        var BundleIds = zod_1.z.array(zod_1.z.string());
+        var EndDate = zod_1.z.string();
+        var EndpointTypes = zod_1.z.array(zod_1.z.string());
+        var EventTypeDisplayName = zod_1.z.string();
+        var IncludeActions = zod_1.z.boolean();
+        var IncludeDetails = zod_1.z.boolean();
+        var IncludePayload = zod_1.z.boolean();
+        var InvocationResults = zod_1.z.array(zod_1.z.boolean());
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var SortBy = zod_1.z.string();
+        var StartDate = zod_1.z.string();
         /*
      Params
     'appIds'?:AppIds,
@@ -4417,8 +4417,8 @@ var Operations;
     // Return a thin list of configured applications. This can be used to configure a filter in the UI
     var NotificationResourceGetApplicationsFacets;
     (function (NotificationResourceGetApplicationsFacets) {
-        var BundleName = z.string();
-        var Response200 = z.array(Schemas.Facet);
+        var BundleName = zod_1.z.string();
+        var Response200 = zod_1.z.array(Schemas.Facet);
         /*
      Params
     'bundleName'?:BundleName
@@ -4442,8 +4442,8 @@ var Operations;
     // Return a thin list of configured bundles. This can be used to configure a filter in the UI
     var NotificationResourceGetBundleFacets;
     (function (NotificationResourceGetBundleFacets) {
-        var IncludeApplications = z.boolean();
-        var Response200 = z.array(Schemas.Facet);
+        var IncludeApplications = zod_1.z.boolean();
+        var Response200 = zod_1.z.array(Schemas.Facet);
         /*
      Params
     'includeApplications'?:IncludeApplications
@@ -4466,8 +4466,8 @@ var Operations;
     // DELETE /notifications/{id}
     var NotificationResourceMarkRead;
     (function (NotificationResourceMarkRead) {
-        var Id = z.number().int();
-        var Response204 = z.string();
+        var Id = zod_1.z.number().int();
+        var Response204 = zod_1.z.string();
         /*
      Params
     'id':Id
@@ -4491,7 +4491,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/notifications-openapi.j
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidateRule } from \\"openapi2typescript\\";
 import { actionBuilder } from \\"openapi2typescript-plugin-react-fetching-library\\";
 
@@ -5447,7 +5447,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/policies-openapi.json e
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidatedResponse } from \\"openapi2typescript\\";
 import { Action } from \\"react-fetching-library\\";
 import { ValidateRule } from \\"openapi2typescript\\";
@@ -6249,7 +6249,7 @@ exports.Operations = exports.Schemas = void 0;
 /**
  * Generated code, DO NOT modify directly.
  */
-var z = require(\\"zod\\");
+var zod_1 = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
 var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
@@ -6269,74 +6269,74 @@ var Schemas;
     Schemas.UUID = zodSchemaUUID();
     Schemas.__Empty = zodSchema__Empty();
     function zodSchemaFact() {
-        return z.object({
-            id: z.number().int().optional().nullable(),
-            name: z.string().optional().nullable(),
+        return zod_1.z.object({
+            id: zod_1.z.number().int().optional().nullable(),
+            name: zod_1.z.string().optional().nullable(),
             type: zodSchemaFactType().optional().nullable(),
         });
     }
     function zodSchemaFactType() {
-        return z.enum([\\"BOOLEAN\\", \\"INT\\", \\"LIST\\", \\"STRING\\"]);
+        return zod_1.z.enum([\\"BOOLEAN\\", \\"INT\\", \\"LIST\\", \\"STRING\\"]);
     }
     function zodSchemaHistoryItem() {
-        return z.object({
-            ctime: z.number().int().optional().nullable(),
-            hostName: z.string().optional().nullable(),
-            id: z.string().optional().nullable(),
+        return zod_1.z.object({
+            ctime: zod_1.z.number().int().optional().nullable(),
+            hostName: zod_1.z.string().optional().nullable(),
+            id: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaList() {
-        return z.array(z.unknown());
+        return zod_1.z.array(zod_1.z.unknown());
     }
     function zodSchemaListHistoryItem() {
-        return z.array(zodSchemaHistoryItem());
+        return zod_1.z.array(zodSchemaHistoryItem());
     }
     function zodSchemaListPolicy() {
-        return z.array(zodSchemaPolicy());
+        return zod_1.z.array(zodSchemaPolicy());
     }
     function zodSchemaListUUID() {
-        return z.array(z.string());
+        return zod_1.z.array(zod_1.z.string());
     }
     function zodSchemaMapStringString() {
-        return z.record(z.string());
+        return zod_1.z.record(zod_1.z.string());
     }
     function zodSchemaMeta() {
-        return z.object({
-            count: z.number().int().optional().nullable(),
+        return zod_1.z.object({
+            count: zod_1.z.number().int().optional().nullable(),
         });
     }
     function zodSchemaPagedResponseOfHistoryItem() {
-        return z.object({
+        return zod_1.z.object({
             data: zodSchemaListHistoryItem().optional().nullable(),
             links: zodSchemaMapStringString().optional().nullable(),
             meta: zodSchemaMeta().optional().nullable(),
         });
     }
     function zodSchemaPagedResponseOfPolicy() {
-        return z.object({
+        return zod_1.z.object({
             data: zodSchemaListPolicy().optional().nullable(),
             links: zodSchemaMapStringString().optional().nullable(),
             meta: zodSchemaMeta().optional().nullable(),
         });
     }
     function zodSchemaPolicy() {
-        return z.object({
-            actions: z.string().optional().nullable(),
-            conditions: z.string(),
-            ctime: z.string().optional().nullable(),
-            description: z.string().optional().nullable(),
+        return zod_1.z.object({
+            actions: zod_1.z.string().optional().nullable(),
+            conditions: zod_1.z.string(),
+            ctime: zod_1.z.string().optional().nullable(),
+            description: zod_1.z.string().optional().nullable(),
             id: zodSchemaUUID().optional().nullable(),
-            isEnabled: z.boolean().optional().nullable(),
-            lastTriggered: z.number().int().optional().nullable(),
-            mtime: z.string().optional().nullable(),
-            name: z.string(),
+            isEnabled: zod_1.z.boolean().optional().nullable(),
+            lastTriggered: zod_1.z.number().int().optional().nullable(),
+            mtime: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaUUID() {
-        return z.string();
+        return zod_1.z.string();
     }
     function zodSchema__Empty() {
-        return z.string().max(0).optional();
+        return zod_1.z.string().max(0).optional();
     }
 })(Schemas = exports.Schemas || (exports.Schemas = {}));
 var Operations;
@@ -6360,7 +6360,7 @@ var Operations;
     // Retrieve a list of fact (keys) along with their data types
     var GetFacts;
     (function (GetFacts) {
-        var Response200 = z.array(Schemas.Fact);
+        var Response200 = zod_1.z.array(Schemas.Fact);
         GetFacts.actionCreator = function () {
             var path = \\"/api/policies/v1.0/facts\\";
             var query = {};
@@ -6376,15 +6376,15 @@ var Operations;
     // Return all policies for a given account
     var GetPolicies;
     (function (GetPolicies) {
-        var FilterOpDescription = z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
-        var FilterOpName = z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
-        var FilterDescription = z.string();
-        var FilterIsEnabled = z.enum([\\"true\\", \\"false\\"]);
-        var FilterName = z.string();
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var SortColumn = z.enum([\\"name\\", \\"description\\", \\"is_enabled\\", \\"mtime\\"]);
-        var SortDirection = z.enum([\\"asc\\", \\"desc\\"]);
+        var FilterOpDescription = zod_1.z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
+        var FilterOpName = zod_1.z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
+        var FilterDescription = zod_1.z.string();
+        var FilterIsEnabled = zod_1.z.enum([\\"true\\", \\"false\\"]);
+        var FilterName = zod_1.z.string();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var SortColumn = zod_1.z.enum([\\"name\\", \\"description\\", \\"is_enabled\\", \\"mtime\\"]);
+        var SortDirection = zod_1.z.enum([\\"asc\\", \\"desc\\"]);
         /*
      Params
     'filterOpDescription'?:FilterOpDescription,
@@ -6445,12 +6445,12 @@ var Operations;
     // Validate (and possibly persist) a passed policy for the given account
     var PostPolicies;
     (function (PostPolicies) {
-        var AlsoStore = z.boolean();
-        var Response400 = z.object({
-            msg: z.string().optional().nullable(),
+        var AlsoStore = zod_1.z.boolean();
+        var Response400 = zod_1.z.object({
+            msg: zod_1.z.string().optional().nullable(),
         });
-        var Response409 = z.object({
-            msg: z.string().optional().nullable(),
+        var Response409 = zod_1.z.object({
+            msg: zod_1.z.string().optional().nullable(),
         });
         /*
      Params
@@ -6483,11 +6483,11 @@ var Operations;
     // Return all policy ids for a given account after applying the filters
     var GetPoliciesIds;
     (function (GetPoliciesIds) {
-        var FilterOpDescription = z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
-        var FilterOpName = z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
-        var FilterDescription = z.string();
-        var FilterIsEnabled = z.enum([\\"true\\", \\"false\\"]);
-        var FilterName = z.string();
+        var FilterOpDescription = zod_1.z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
+        var FilterOpName = zod_1.z.enum([\\"equal\\", \\"like\\", \\"ilike\\", \\"not_equal\\"]);
+        var FilterDescription = zod_1.z.string();
+        var FilterIsEnabled = zod_1.z.enum([\\"true\\", \\"false\\"]);
+        var FilterName = zod_1.z.string();
         /*
      Params
     'filterOpDescription'?:FilterOpDescription,
@@ -6532,7 +6532,7 @@ var Operations;
     // Delete policies for a customer by the ids passed in the body. Result will be a list of deleted UUIDs
     var DeletePoliciesIds;
     (function (DeletePoliciesIds) {
-        var Response200 = z.array(Schemas.UUID);
+        var Response200 = zod_1.z.array(Schemas.UUID);
         /*
      Params
     body: Schemas.ListUUID
@@ -6556,7 +6556,7 @@ var Operations;
     // Enable/disable policies identified by list of uuid in body
     var PostPoliciesIdsEnabled;
     (function (PostPoliciesIdsEnabled) {
-        var Enabled = z.boolean();
+        var Enabled = zod_1.z.boolean();
         /*
      Params
     'enabled'?:Enabled,
@@ -6608,7 +6608,7 @@ var Operations;
     // Validates the Policy.name and verifies if it is unique.
     var PostPoliciesValidateName;
     (function (PostPoliciesValidateName) {
-        var Body = z.string();
+        var Body = zod_1.z.string();
         /*
      Params
     'id'?:Schemas.UUID,
@@ -6685,7 +6685,7 @@ var Operations;
     // Enable/disable a policy
     var PostPoliciesByIdEnabled;
     (function (PostPoliciesByIdEnabled) {
-        var Enabled = z.boolean();
+        var Enabled = zod_1.z.boolean();
         /*
      Params
     'id':Schemas.UUID,
@@ -6714,14 +6714,14 @@ var Operations;
     // Retrieve the trigger history of a single policy
     var GetPoliciesByIdHistoryTrigger;
     (function (GetPoliciesByIdHistoryTrigger) {
-        var FilterOpId = z.enum([\\"equal\\", \\"not_equal\\", \\"like\\"]);
-        var FilterOpName = z.enum([\\"equal\\", \\"like\\", \\"not_equal\\"]);
-        var FilterId = z.string();
-        var FilterName = z.string();
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var SortColumn = z.enum([\\"hostName\\", \\"id\\", \\"ctime\\"]);
-        var SortDirection = z.enum([\\"asc\\", \\"desc\\"]);
+        var FilterOpId = zod_1.z.enum([\\"equal\\", \\"not_equal\\", \\"like\\"]);
+        var FilterOpName = zod_1.z.enum([\\"equal\\", \\"like\\", \\"not_equal\\"]);
+        var FilterId = zod_1.z.string();
+        var FilterName = zod_1.z.string();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var SortColumn = zod_1.z.enum([\\"hostName\\", \\"id\\", \\"ctime\\"]);
+        var SortDirection = zod_1.z.enum([\\"asc\\", \\"desc\\"]);
         /*
      Params
     'id':Schemas.UUID,
@@ -6779,9 +6779,9 @@ var Operations;
     // Update a single policy for a customer by its id
     var PutPoliciesByPolicyId;
     (function (PutPoliciesByPolicyId) {
-        var Dry = z.boolean();
-        var Response409 = z.object({
-            msg: z.string().optional().nullable(),
+        var Dry = zod_1.z.boolean();
+        var Response409 = zod_1.z.object({
+            msg: zod_1.z.string().optional().nullable(),
         });
         /*
      Params
@@ -6832,7 +6832,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/policies-openapi.json e
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidateRule } from \\"openapi2typescript\\";
 import { actionBuilder } from \\"openapi2typescript-plugin-react-fetching-library\\";
 
@@ -7476,7 +7476,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/rbac-openapi.json execu
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidatedResponse } from \\"openapi2typescript\\";
 import { Action } from \\"react-fetching-library\\";
 import { ValidateRule } from \\"openapi2typescript\\";
@@ -10029,7 +10029,7 @@ exports.Operations = exports.Schemas = void 0;
 /**
  * Generated code, DO NOT modify directly.
  */
-var z = require(\\"zod\\");
+var zod_1 = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
 var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
@@ -10088,358 +10088,358 @@ var Schemas;
     Schemas.UUID = zodSchemaUUID();
     Schemas.__Empty = zodSchema__Empty();
     function zodSchemaAccess() {
-        return z.object({
-            permission: z.string(),
-            resourceDefinitions: z.array(zodSchemaResourceDefinition()),
+        return zod_1.z.object({
+            permission: zod_1.z.string(),
+            resourceDefinitions: zod_1.z.array(zodSchemaResourceDefinition()),
         });
     }
     function zodSchemaAccessPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaAccess()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaAccess()),
         }));
     }
     function zodSchemaAdditionalGroup() {
-        return z.object({
-            description: z.string().optional().nullable(),
-            name: z.string().optional().nullable(),
-            uuid: z.string().optional().nullable(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string().optional().nullable(),
+            uuid: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaCrossAccountRequest() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            end_date: z.unknown().optional().nullable(),
-            request_id: z.string().optional().nullable(),
-            start_date: z.unknown().optional().nullable(),
-            status: z.string().optional().nullable(),
-            target_account: z.string().optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            end_date: zod_1.z.unknown().optional().nullable(),
+            request_id: zod_1.z.string().optional().nullable(),
+            start_date: zod_1.z.unknown().optional().nullable(),
+            status: zod_1.z.string().optional().nullable(),
+            target_account: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaCrossAccountRequestByAccount() {
-        return z.intersection(zodSchemaCrossAccountRequest(), z.object({
-            email: z.string().optional().nullable(),
-            first_name: z.string().optional().nullable(),
-            last_name: z.string().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaCrossAccountRequest(), zod_1.z.object({
+            email: zod_1.z.string().optional().nullable(),
+            first_name: zod_1.z.string().optional().nullable(),
+            last_name: zod_1.z.string().optional().nullable(),
         }));
     }
     function zodSchemaCrossAccountRequestByUserId() {
-        return z.intersection(zodSchemaCrossAccountRequest(), z.object({
-            user_id: z.string().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaCrossAccountRequest(), zod_1.z.object({
+            user_id: zod_1.z.string().optional().nullable(),
         }));
     }
     function zodSchemaCrossAccountRequestDetail() {
-        return z.union([
+        return zod_1.z.union([
             zodSchemaCrossAccountRequestDetailByAccount(),
             zodSchemaCrossAccountRequestDetailByUseId(),
         ]);
     }
     function zodSchemaCrossAccountRequestDetailByAccount() {
-        return z.intersection(zodSchemaCrossAccountRequestWithRoles(), z.object({
-            email: z.unknown().optional().nullable(),
-            first_name: z.unknown().optional().nullable(),
-            last_name: z.unknown().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaCrossAccountRequestWithRoles(), zod_1.z.object({
+            email: zod_1.z.unknown().optional().nullable(),
+            first_name: zod_1.z.unknown().optional().nullable(),
+            last_name: zod_1.z.unknown().optional().nullable(),
         }));
     }
     function zodSchemaCrossAccountRequestDetailByUseId() {
-        return z.intersection(zodSchemaCrossAccountRequestWithRoles(), z.object({
-            user_id: z.unknown().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaCrossAccountRequestWithRoles(), zod_1.z.object({
+            user_id: zod_1.z.unknown().optional().nullable(),
         }));
     }
     function zodSchemaCrossAccountRequestIn() {
-        return z.object({
-            end_date: z.string(),
-            roles: z.array(z.string()),
-            start_date: z.string(),
-            target_account: z.string(),
+        return zod_1.z.object({
+            end_date: zod_1.z.string(),
+            roles: zod_1.z.array(zod_1.z.string()),
+            start_date: zod_1.z.string(),
+            target_account: zod_1.z.string(),
         });
     }
     function zodSchemaCrossAccountRequestOut() {
-        return z.intersection(zodSchemaCrossAccountRequestWithRoles(), z.object({
-            user_id: z.string().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaCrossAccountRequestWithRoles(), zod_1.z.object({
+            user_id: zod_1.z.string().optional().nullable(),
         }));
     }
     function zodSchemaCrossAccountRequestPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(z.union([
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zod_1.z.union([
                 zodSchemaCrossAccountRequestByAccount(),
                 zodSchemaCrossAccountRequestByUserId(),
             ])),
         }));
     }
     function zodSchemaCrossAccountRequestPatch() {
-        return z.object({
-            end_date: z.string().optional().nullable(),
-            roles: z.array(z.string()).optional().nullable(),
-            start_date: z.string().optional().nullable(),
-            status: z
+        return zod_1.z.object({
+            end_date: zod_1.z.string().optional().nullable(),
+            roles: zod_1.z.array(zod_1.z.string()).optional().nullable(),
+            start_date: zod_1.z.string().optional().nullable(),
+            status: zod_1.z
                 .enum([\\"pending\\", \\"approved\\", \\"expired\\", \\"cancelled\\", \\"denied\\"])
                 .optional()
                 .nullable(),
         });
     }
     function zodSchemaCrossAccountRequestUpdateIn() {
-        return z.object({
-            end_date: z.string(),
-            roles: z.array(z.string()),
-            start_date: z.string(),
-            status: z
+        return zod_1.z.object({
+            end_date: zod_1.z.string(),
+            roles: zod_1.z.array(zod_1.z.string()),
+            start_date: zod_1.z.string(),
+            status: zod_1.z
                 .enum([\\"pending\\", \\"approved\\", \\"expired\\", \\"cancelled\\", \\"denied\\"])
                 .optional()
                 .nullable(),
         });
     }
     function zodSchemaCrossAccountRequestWithRoles() {
-        return z.object({
-            created: z.string().optional().nullable(),
-            end_date: z.string().optional().nullable(),
-            request_id: z.string().optional().nullable(),
-            roles: z
-                .array(z.object({
-                description: z.string().optional().nullable(),
-                display_name: z.string().optional().nullable(),
-                permissions: z.array(zodSchemaPermission()).optional().nullable(),
+        return zod_1.z.object({
+            created: zod_1.z.string().optional().nullable(),
+            end_date: zod_1.z.string().optional().nullable(),
+            request_id: zod_1.z.string().optional().nullable(),
+            roles: zod_1.z
+                .array(zod_1.z.object({
+                description: zod_1.z.string().optional().nullable(),
+                display_name: zod_1.z.string().optional().nullable(),
+                permissions: zod_1.z.array(zodSchemaPermission()).optional().nullable(),
             }))
                 .optional()
                 .nullable(),
-            start_date: z.string().optional().nullable(),
-            status: z.string().optional().nullable(),
-            target_account: z.string().optional().nullable(),
+            start_date: zod_1.z.string().optional().nullable(),
+            status: zod_1.z.string().optional().nullable(),
+            target_account: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaError() {
-        return z.object({
-            errors: z.array(z.object({
-                detail: z.string().optional().nullable(),
-                status: z.string().optional().nullable(),
+        return zod_1.z.object({
+            errors: zod_1.z.array(zod_1.z.object({
+                detail: zod_1.z.string().optional().nullable(),
+                status: zod_1.z.string().optional().nullable(),
             })),
         });
     }
     function zodSchemaError403() {
-        return z.object({
-            errors: z.array(z.object({
-                detail: z.string().optional().nullable(),
-                source: z.string().optional().nullable(),
-                status: z.string().optional().nullable(),
+        return zod_1.z.object({
+            errors: zod_1.z.array(zod_1.z.object({
+                detail: zod_1.z.string().optional().nullable(),
+                source: zod_1.z.string().optional().nullable(),
+                status: zod_1.z.string().optional().nullable(),
             })),
         });
     }
     function zodSchemaGroup() {
-        return z.object({
-            description: z.string().optional().nullable(),
-            name: z.string(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaGroupOut() {
-        return z.intersection(zodSchemaGroup(), z.intersection(zodSchemaUUID(), z.intersection(zodSchemaTimestamped(), z.object({
-            platform_default: z.boolean().optional().nullable(),
-            principalCount: z.number().int().optional().nullable(),
-            roleCount: z.number().int().optional().nullable(),
-            system: z.boolean().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaGroup(), zod_1.z.intersection(zodSchemaUUID(), zod_1.z.intersection(zodSchemaTimestamped(), zod_1.z.object({
+            platform_default: zod_1.z.boolean().optional().nullable(),
+            principalCount: zod_1.z.number().int().optional().nullable(),
+            roleCount: zod_1.z.number().int().optional().nullable(),
+            system: zod_1.z.boolean().optional().nullable(),
         }))));
     }
     function zodSchemaGroupPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaGroupOut()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaGroupOut()),
         }));
     }
     function zodSchemaGroupPrincipalIn() {
-        return z.object({
-            principals: z.array(zodSchemaPrincipalIn()),
+        return zod_1.z.object({
+            principals: zod_1.z.array(zodSchemaPrincipalIn()),
         });
     }
     function zodSchemaGroupRoleIn() {
-        return z.object({
-            roles: z.array(z.string()),
+        return zod_1.z.object({
+            roles: zod_1.z.array(zod_1.z.string()),
         });
     }
     function zodSchemaGroupRolesPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaRoleOut()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaRoleOut()),
         }));
     }
     function zodSchemaGroupWithPrincipals() {
-        return z.intersection(zodSchemaGroup(), z.intersection(zodSchemaUUID(), z.intersection(zodSchemaTimestamped(), z.object({
-            principals: z.array(zodSchemaPrincipal()),
+        return zod_1.z.intersection(zodSchemaGroup(), zod_1.z.intersection(zodSchemaUUID(), zod_1.z.intersection(zodSchemaTimestamped(), zod_1.z.object({
+            principals: zod_1.z.array(zodSchemaPrincipal()),
         }))));
     }
     function zodSchemaGroupWithPrincipalsAndRoles() {
-        return z.intersection(zodSchemaGroup(), z.intersection(zodSchemaUUID(), z.intersection(zodSchemaTimestamped(), z.object({
-            principals: z.array(zodSchemaPrincipal()),
-            roles: z.array(zodSchemaRoleOut()),
+        return zod_1.z.intersection(zodSchemaGroup(), zod_1.z.intersection(zodSchemaUUID(), zod_1.z.intersection(zodSchemaTimestamped(), zod_1.z.object({
+            principals: zod_1.z.array(zodSchemaPrincipal()),
+            roles: zod_1.z.array(zodSchemaRoleOut()),
         }))));
     }
     function zodSchemaListPagination() {
-        return z.object({
+        return zod_1.z.object({
             links: zodSchemaPaginationLinks().optional().nullable(),
             meta: zodSchemaPaginationMeta().optional().nullable(),
         });
     }
     function zodSchemaPaginationLinks() {
-        return z.object({
-            first: z.string().optional().nullable(),
-            last: z.string().optional().nullable(),
-            next: z.string().optional().nullable(),
-            previous: z.string().optional().nullable(),
+        return zod_1.z.object({
+            first: zod_1.z.string().optional().nullable(),
+            last: zod_1.z.string().optional().nullable(),
+            next: zod_1.z.string().optional().nullable(),
+            previous: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaPaginationMeta() {
-        return z.object({
-            count: z.number().int().optional().nullable(),
+        return zod_1.z.object({
+            count: zod_1.z.number().int().optional().nullable(),
         });
     }
     function zodSchemaPermission() {
-        return z.object({
-            application: z.string().optional().nullable(),
-            description: z.string().optional().nullable(),
-            permission: z.string().optional().nullable(),
-            resource_type: z.string().optional().nullable(),
-            verb: z.string().optional().nullable(),
+        return zod_1.z.object({
+            application: zod_1.z.string().optional().nullable(),
+            description: zod_1.z.string().optional().nullable(),
+            permission: zod_1.z.string().optional().nullable(),
+            resource_type: zod_1.z.string().optional().nullable(),
+            verb: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaPermissionOptionsPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(z.string()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zod_1.z.string()),
         }));
     }
     function zodSchemaPermissionPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaPermission()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaPermission()),
         }));
     }
     function zodSchemaPolicy() {
-        return z.object({
-            description: z.string().optional().nullable(),
-            name: z.string(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaPolicyExtended() {
-        return z.intersection(zodSchemaPolicy(), z.intersection(zodSchemaUUID(), z.intersection(zodSchemaTimestamped(), z.object({
+        return zod_1.z.intersection(zodSchemaPolicy(), zod_1.z.intersection(zodSchemaUUID(), zod_1.z.intersection(zodSchemaTimestamped(), zod_1.z.object({
             group: zodSchemaGroupOut(),
-            roles: z.array(zodSchemaRoleOut()),
+            roles: zod_1.z.array(zodSchemaRoleOut()),
         }))));
     }
     function zodSchemaPolicyIn() {
-        return z.intersection(zodSchemaPolicy(), z.object({
-            group: z.string(),
-            roles: z.array(z.string()),
+        return zod_1.z.intersection(zodSchemaPolicy(), zod_1.z.object({
+            group: zod_1.z.string(),
+            roles: zod_1.z.array(zod_1.z.string()),
         }));
     }
     function zodSchemaPolicyPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaPolicyExtended()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaPolicyExtended()),
         }));
     }
     function zodSchemaPrincipal() {
-        return z.object({
-            email: z.string(),
-            first_name: z.string().optional().nullable(),
-            is_active: z.boolean().optional().nullable(),
-            is_org_admin: z.boolean().optional().nullable(),
-            last_name: z.string().optional().nullable(),
-            username: z.string(),
+        return zod_1.z.object({
+            email: zod_1.z.string(),
+            first_name: zod_1.z.string().optional().nullable(),
+            is_active: zod_1.z.boolean().optional().nullable(),
+            is_org_admin: zod_1.z.boolean().optional().nullable(),
+            last_name: zod_1.z.string().optional().nullable(),
+            username: zod_1.z.string(),
         });
     }
     function zodSchemaPrincipalIn() {
-        return z.object({
-            username: z.string(),
+        return zod_1.z.object({
+            username: zod_1.z.string(),
         });
     }
     function zodSchemaPrincipalOut() {
-        return z.intersection(zodSchemaPrincipal(), zodSchemaUUID());
+        return zod_1.z.intersection(zodSchemaPrincipal(), zodSchemaUUID());
     }
     function zodSchemaPrincipalPagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaPrincipal()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaPrincipal()),
         }));
     }
     function zodSchemaResourceDefinition() {
-        return z.object({
+        return zod_1.z.object({
             attributeFilter: zodSchemaResourceDefinitionFilter(),
         });
     }
     function zodSchemaResourceDefinitionFilter() {
-        return z.object({
-            key: z.string(),
-            operation: z.enum([\\"equal\\", \\"in\\"]),
-            value: z.string(),
+        return zod_1.z.object({
+            key: zod_1.z.string(),
+            operation: zod_1.z.enum([\\"equal\\", \\"in\\"]),
+            value: zod_1.z.string(),
         });
     }
     function zodSchemaRole() {
-        return z.object({
-            description: z.string().optional().nullable(),
-            display_name: z.string().optional().nullable(),
-            name: z.string(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string(),
         });
     }
     function zodSchemaRoleIn() {
-        return z.intersection(zodSchemaRole(), z.object({
-            access: z.array(zodSchemaAccess()),
+        return zod_1.z.intersection(zodSchemaRole(), zod_1.z.object({
+            access: zod_1.z.array(zodSchemaAccess()),
         }));
     }
     function zodSchemaRoleOut() {
-        return z.intersection(zodSchemaRole(), z.intersection(zodSchemaUUID(), z.intersection(zodSchemaTimestamped(), z.object({
-            accessCount: z.number().int().optional().nullable(),
-            applications: z.array(z.string()).optional().nullable(),
-            platform_default: z.boolean().optional().nullable(),
-            policyCount: z.number().int().optional().nullable(),
-            system: z.boolean().optional().nullable(),
+        return zod_1.z.intersection(zodSchemaRole(), zod_1.z.intersection(zodSchemaUUID(), zod_1.z.intersection(zodSchemaTimestamped(), zod_1.z.object({
+            accessCount: zod_1.z.number().int().optional().nullable(),
+            applications: zod_1.z.array(zod_1.z.string()).optional().nullable(),
+            platform_default: zod_1.z.boolean().optional().nullable(),
+            policyCount: zod_1.z.number().int().optional().nullable(),
+            system: zod_1.z.boolean().optional().nullable(),
         }))));
     }
     function zodSchemaRoleOutDynamic() {
-        return z.intersection(zodSchemaRole(), z.intersection(zodSchemaUUID(), z.intersection(zodSchemaTimestamped(), z.object({
-            accessCount: z.number().int(),
-            applications: z.array(z.string()),
-            groups_in: z
+        return zod_1.z.intersection(zodSchemaRole(), zod_1.z.intersection(zodSchemaUUID(), zod_1.z.intersection(zodSchemaTimestamped(), zod_1.z.object({
+            accessCount: zod_1.z.number().int(),
+            applications: zod_1.z.array(zod_1.z.string()),
+            groups_in: zod_1.z
                 .array(zodSchemaAdditionalGroup())
                 .optional()
                 .nullable(),
-            groups_in_count: z.number().int().optional().nullable(),
-            platform_default: z.boolean(),
-            policyCount: z.number().int(),
-            system: z.boolean(),
+            groups_in_count: zod_1.z.number().int().optional().nullable(),
+            platform_default: zod_1.z.boolean(),
+            policyCount: zod_1.z.number().int(),
+            system: zod_1.z.boolean(),
         }))));
     }
     function zodSchemaRolePagination() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaRoleOut()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaRoleOut()),
         }));
     }
     function zodSchemaRolePaginationDynamic() {
-        return z.intersection(zodSchemaListPagination(), z.object({
-            data: z.array(zodSchemaRoleOutDynamic()),
+        return zod_1.z.intersection(zodSchemaListPagination(), zod_1.z.object({
+            data: zod_1.z.array(zodSchemaRoleOutDynamic()),
         }));
     }
     function zodSchemaRolePatch() {
-        return z.object({
-            description: z.string().optional().nullable(),
-            display_name: z.string().optional().nullable(),
-            name: z.string().optional().nullable(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
+            display_name: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaRoleWithAccess() {
-        return z.intersection(zodSchemaRoleOut(), z.object({
-            access: z.array(zodSchemaAccess()),
+        return zod_1.z.intersection(zodSchemaRoleOut(), zod_1.z.object({
+            access: zod_1.z.array(zodSchemaAccess()),
         }));
     }
     function zodSchemaStatus() {
-        return z.object({
-            api_version: z.number().int(),
-            commit: z.string().optional().nullable(),
+        return zod_1.z.object({
+            api_version: zod_1.z.number().int(),
+            commit: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaTimestamped() {
-        return z.object({
-            created: z.string(),
-            modified: z.string(),
+        return zod_1.z.object({
+            created: zod_1.z.string(),
+            modified: zod_1.z.string(),
         });
     }
     function zodSchemaUUID() {
-        return z.object({
-            uuid: z.string(),
+        return zod_1.z.object({
+            uuid: zod_1.z.string(),
         });
     }
     function zodSchema__Empty() {
-        return z.string().max(0).optional();
+        return zod_1.z.string().max(0).optional();
     }
 })(Schemas = exports.Schemas || (exports.Schemas = {}));
 var Operations;
@@ -10448,11 +10448,11 @@ var Operations;
     // Get the permitted access for a principal in the tenant (defaults to principal from the identity header)
     var GetPrincipalAccess;
     (function (GetPrincipalAccess) {
-        var Application = z.string();
-        var Username = z.string();
-        var OrderBy = z.enum([\\"application\\", \\"resource_type\\", \\"verb\\"]);
-        var Limit = z.number().int();
-        var Offset = z.number().int();
+        var Application = zod_1.z.string();
+        var Username = zod_1.z.string();
+        var OrderBy = zod_1.z.enum([\\"application\\", \\"resource_type\\", \\"verb\\"]);
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
         /*
      Params
     'application':Application,
@@ -10496,19 +10496,19 @@ var Operations;
     // List the cross account requests for a user or account
     var ListCrossAccountRequests;
     (function (ListCrossAccountRequests) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var QueryBy = z.enum([\\"user_id\\", \\"target_account\\"]);
-        var Account = z.string();
-        var ApprovedOnly = z.enum([\\"true\\"]);
-        var Status = z.enum([
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var QueryBy = zod_1.z.enum([\\"user_id\\", \\"target_account\\"]);
+        var Account = zod_1.z.string();
+        var ApprovedOnly = zod_1.z.enum([\\"true\\"]);
+        var Status = zod_1.z.enum([
             \\"pending\\",
             \\"approved\\",
             \\"denied\\",
             \\"cancelled\\",
             \\"expired\\",
         ]);
-        var OrderBy = z.enum([
+        var OrderBy = zod_1.z.enum([
             \\"request_id\\",
             \\"start_date\\",
             \\"end_date\\",
@@ -10593,10 +10593,10 @@ var Operations;
     // Get a cross account request
     var GetCrossAccountRequest;
     (function (GetCrossAccountRequest) {
-        var Uuid = z.string();
-        var QueryBy = z.enum([\\"user_id\\", \\"target_account\\"]);
-        var Account = z.string();
-        var ApprovedOnly = z.enum([\\"true\\"]);
+        var Uuid = zod_1.z.string();
+        var QueryBy = zod_1.z.enum([\\"user_id\\", \\"target_account\\"]);
+        var Account = zod_1.z.string();
+        var ApprovedOnly = zod_1.z.enum([\\"true\\"]);
         /*
      Params
     'uuid':Uuid,
@@ -10634,7 +10634,7 @@ var Operations;
     // Update a cross account request
     var PutCrossAccountRequest;
     (function (PutCrossAccountRequest) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -10663,23 +10663,23 @@ var Operations;
     // List the groups for a tenant
     var ListGroups;
     (function (ListGroups) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var Name = z.string();
-        var NameMatch = z.enum([\\"partial\\", \\"exact\\"]);
-        var Scope = z.enum([\\"account\\", \\"principal\\"]);
-        var Username = z.string();
-        var Uuid = z.array(z.string());
-        var RoleNames = z.array(z.string());
-        var RoleDiscriminator = z.enum([\\"all\\", \\"any\\"]);
-        var OrderBy = z.enum([
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var Name = zod_1.z.string();
+        var NameMatch = zod_1.z.enum([\\"partial\\", \\"exact\\"]);
+        var Scope = zod_1.z.enum([\\"account\\", \\"principal\\"]);
+        var Username = zod_1.z.string();
+        var Uuid = zod_1.z.array(zod_1.z.string());
+        var RoleNames = zod_1.z.array(zod_1.z.string());
+        var RoleDiscriminator = zod_1.z.enum([\\"all\\", \\"any\\"]);
+        var OrderBy = zod_1.z.enum([
             \\"name\\",
             \\"modified\\",
             \\"principalCount\\",
             \\"policyCount\\",
         ]);
-        var PlatformDefault = z.boolean();
-        var System = z.boolean();
+        var PlatformDefault = zod_1.z.boolean();
+        var System = zod_1.z.boolean();
         /*
      Params
     'limit'?:Limit,
@@ -10777,7 +10777,7 @@ var Operations;
     // Get a group in the tenant
     var GetGroup;
     (function (GetGroup) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid
@@ -10803,7 +10803,7 @@ var Operations;
     // Update a group in the tenant
     var UpdateGroup;
     (function (UpdateGroup) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -10831,7 +10831,7 @@ var Operations;
     // Delete a group in the tenant
     var DeleteGroup;
     (function (DeleteGroup) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid
@@ -10857,11 +10857,11 @@ var Operations;
     // Get a list of principals from a group in the tenant
     var GetPrincipalsFromGroup;
     (function (GetPrincipalsFromGroup) {
-        var Uuid = z.string();
-        var PrincipalUsername = z.string();
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var OrderBy = z.enum([\\"username\\"]);
+        var Uuid = zod_1.z.string();
+        var PrincipalUsername = zod_1.z.string();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var OrderBy = zod_1.z.enum([\\"username\\"]);
         /*
      Params
     'uuid':Uuid,
@@ -10903,7 +10903,7 @@ var Operations;
     // Add a principal to a group in the tenant
     var AddPrincipalToGroup;
     (function (AddPrincipalToGroup) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -10932,8 +10932,8 @@ var Operations;
     // Remove a principal from a group in the tenant
     var DeletePrincipalFromGroup;
     (function (DeletePrincipalFromGroup) {
-        var Uuid = z.string();
-        var Usernames = z.string();
+        var Uuid = zod_1.z.string();
+        var Usernames = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -10964,15 +10964,15 @@ var Operations;
     // List the roles for a group in the tenant
     var ListRolesForGroup;
     (function (ListRolesForGroup) {
-        var Uuid = z.string();
-        var Exclude = z.boolean();
-        var RoleName = z.string();
-        var RoleDisplayName = z.string();
-        var RoleDescription = z.string();
-        var RoleSystem = z.boolean();
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var OrderBy = z.enum([\\"name\\", \\"display_name\\", \\"modified\\", \\"policyCount\\"]);
+        var Uuid = zod_1.z.string();
+        var Exclude = zod_1.z.boolean();
+        var RoleName = zod_1.z.string();
+        var RoleDisplayName = zod_1.z.string();
+        var RoleDescription = zod_1.z.string();
+        var RoleSystem = zod_1.z.boolean();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var OrderBy = zod_1.z.enum([\\"name\\", \\"display_name\\", \\"modified\\", \\"policyCount\\"]);
         /*
      Params
     'uuid':Uuid,
@@ -11029,9 +11029,9 @@ var Operations;
     // Add a role to a group in the tenant
     var AddRoleToGroup;
     (function (AddRoleToGroup) {
-        var Uuid = z.string();
-        var Response200 = z.object({
-            data: z.array(Schemas.RoleOut),
+        var Uuid = zod_1.z.string();
+        var Response200 = zod_1.z.object({
+            data: zod_1.z.array(Schemas.RoleOut),
         });
         /*
      Params
@@ -11061,8 +11061,8 @@ var Operations;
     // Remove a role from a group in the tenant
     var DeleteRoleFromGroup;
     (function (DeleteRoleFromGroup) {
-        var Uuid = z.string();
-        var Roles = z.string();
+        var Uuid = zod_1.z.string();
+        var Roles = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -11093,21 +11093,21 @@ var Operations;
     // List the permissions for a tenant
     var ListPermissions;
     (function (ListPermissions) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var OrderBy = z.enum([
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var OrderBy = zod_1.z.enum([
             \\"application\\",
             \\"resource_type\\",
             \\"verb\\",
             \\"permission\\",
         ]);
-        var Application = z.string();
-        var ResourceType = z.string();
-        var Verb = z.string();
-        var Permission = z.string();
-        var ExcludeGlobals = z.enum([\\"true\\", \\"false\\"]);
-        var ExcludeRoles = z.string();
-        var AllowedOnly = z.enum([\\"true\\", \\"false\\"]);
+        var Application = zod_1.z.string();
+        var ResourceType = zod_1.z.string();
+        var Verb = zod_1.z.string();
+        var Permission = zod_1.z.string();
+        var ExcludeGlobals = zod_1.z.enum([\\"true\\", \\"false\\"]);
+        var ExcludeRoles = zod_1.z.string();
+        var AllowedOnly = zod_1.z.enum([\\"true\\", \\"false\\"]);
         /*
      Params
     'limit'?:Limit,
@@ -11172,14 +11172,14 @@ var Operations;
     // List the available options for fields of permissions for a tenant
     var ListPermissionOptions;
     (function (ListPermissionOptions) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var Field = z.enum([\\"application\\", \\"resource_type\\", \\"verb\\"]);
-        var Application = z.string();
-        var ResourceType = z.string();
-        var Verb = z.string();
-        var ExcludeGlobals = z.enum([\\"true\\", \\"false\\"]);
-        var AllowedOnly = z.enum([\\"true\\", \\"false\\"]);
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var Field = zod_1.z.enum([\\"application\\", \\"resource_type\\", \\"verb\\"]);
+        var Application = zod_1.z.string();
+        var ResourceType = zod_1.z.string();
+        var Verb = zod_1.z.string();
+        var ExcludeGlobals = zod_1.z.enum([\\"true\\", \\"false\\"]);
+        var AllowedOnly = zod_1.z.enum([\\"true\\", \\"false\\"]);
         /*
      Params
     'limit'?:Limit,
@@ -11235,13 +11235,13 @@ var Operations;
     // List the policies in the tenant
     var ListPolicies;
     (function (ListPolicies) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var Name = z.string();
-        var Scope = z.enum([\\"account\\", \\"principal\\"]);
-        var GroupName = z.string();
-        var GroupUuid = z.string();
-        var OrderBy = z.enum([\\"name\\", \\"modified\\"]);
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var Name = zod_1.z.string();
+        var Scope = zod_1.z.enum([\\"account\\", \\"principal\\"]);
+        var GroupName = zod_1.z.string();
+        var GroupUuid = zod_1.z.string();
+        var OrderBy = zod_1.z.enum([\\"name\\", \\"modified\\"]);
         /*
      Params
     'limit'?:Limit,
@@ -11317,7 +11317,7 @@ var Operations;
     // Get a policy in the tenant
     var GetPolicy;
     (function (GetPolicy) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid
@@ -11342,7 +11342,7 @@ var Operations;
     // Update a policy in the tenant
     var UpdatePolicy;
     (function (UpdatePolicy) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -11369,7 +11369,7 @@ var Operations;
     // Delete a policy in the tenant
     var DeletePolicy;
     (function (DeletePolicy) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid
@@ -11394,15 +11394,15 @@ var Operations;
     // List the principals for a tenant
     var ListPrincipals;
     (function (ListPrincipals) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var MatchCriteria = z.enum([\\"partial\\", \\"exact\\"]);
-        var Usernames = z.string();
-        var SortOrder = z.enum([\\"asc\\", \\"desc\\"]);
-        var Email = z.string();
-        var Status = z.enum([\\"enabled\\", \\"disabled\\", \\"all\\"]);
-        var AdminOnly = z.enum([\\"true\\", \\"false\\"]);
-        var OrderBy = z.enum([\\"username\\"]);
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var MatchCriteria = zod_1.z.enum([\\"partial\\", \\"exact\\"]);
+        var Usernames = zod_1.z.string();
+        var SortOrder = zod_1.z.enum([\\"asc\\", \\"desc\\"]);
+        var Email = zod_1.z.string();
+        var Status = zod_1.z.enum([\\"enabled\\", \\"disabled\\", \\"all\\"]);
+        var AdminOnly = zod_1.z.enum([\\"true\\", \\"false\\"]);
+        var OrderBy = zod_1.z.enum([\\"username\\"]);
         /*
      Params
     'limit'?:Limit,
@@ -11463,18 +11463,18 @@ var Operations;
     // List the roles for a tenant
     var ListRoles;
     (function (ListRoles) {
-        var Limit = z.number().int();
-        var Offset = z.number().int();
-        var Name = z.string();
-        var System = z.boolean();
-        var DisplayName = z.string();
-        var NameMatch = z.enum([\\"partial\\", \\"exact\\"]);
-        var Scope = z.enum([\\"account\\", \\"principal\\"]);
-        var OrderBy = z.enum([\\"name\\", \\"display_name\\", \\"modified\\", \\"policyCount\\"]);
-        var AddFields = z.array(z.enum([\\"groups_in\\", \\"groups_in_count\\"]));
-        var Username = z.string();
-        var Application = z.string();
-        var Permission = z.string();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
+        var Name = zod_1.z.string();
+        var System = zod_1.z.boolean();
+        var DisplayName = zod_1.z.string();
+        var NameMatch = zod_1.z.enum([\\"partial\\", \\"exact\\"]);
+        var Scope = zod_1.z.enum([\\"account\\", \\"principal\\"]);
+        var OrderBy = zod_1.z.enum([\\"name\\", \\"display_name\\", \\"modified\\", \\"policyCount\\"]);
+        var AddFields = zod_1.z.array(zod_1.z.enum([\\"groups_in\\", \\"groups_in_count\\"]));
+        var Username = zod_1.z.string();
+        var Application = zod_1.z.string();
+        var Permission = zod_1.z.string();
         /*
      Params
     'limit'?:Limit,
@@ -11572,8 +11572,8 @@ var Operations;
     // Get a role in the tenant
     var GetRole;
     (function (GetRole) {
-        var Uuid = z.string();
-        var Scope = z.enum([\\"account\\", \\"principal\\"]);
+        var Uuid = zod_1.z.string();
+        var Scope = zod_1.z.enum([\\"account\\", \\"principal\\"]);
         /*
      Params
     'uuid':Uuid,
@@ -11603,7 +11603,7 @@ var Operations;
     // Update a Role in the tenant
     var UpdateRole;
     (function (UpdateRole) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid,
@@ -11631,7 +11631,7 @@ var Operations;
     // Delete a role in the tenant
     var DeleteRole;
     (function (DeleteRole) {
-        var Uuid = z.string();
+        var Uuid = zod_1.z.string();
         /*
      Params
     'uuid':Uuid
@@ -11657,9 +11657,9 @@ var Operations;
     // Get access for a role in the tenant
     var GetRoleAccess;
     (function (GetRoleAccess) {
-        var Uuid = z.string();
-        var Limit = z.number().int();
-        var Offset = z.number().int();
+        var Uuid = zod_1.z.string();
+        var Limit = zod_1.z.number().int();
+        var Offset = zod_1.z.number().int();
         /*
      Params
     'uuid':Uuid,
@@ -11715,7 +11715,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/rbac-openapi.json execu
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidateRule } from \\"openapi2typescript\\";
 import { actionBuilder } from \\"openapi2typescript-plugin-react-fetching-library\\";
 
@@ -13790,7 +13790,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/simple-openapi.json exe
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidatedResponse } from \\"openapi2typescript\\";
 import { Action } from \\"react-fetching-library\\";
 import { ValidateRule } from \\"openapi2typescript\\";
@@ -13905,7 +13905,7 @@ exports.Operations = exports.Schemas = void 0;
 /**
  * Generated code, DO NOT modify directly.
  */
-var z = require(\\"zod\\");
+var zod_1 = require(\\"zod\\");
 var openapi2typescript_1 = require(\\"openapi2typescript\\");
 var openapi2typescript_plugin_react_fetching_library_1 = require(\\"openapi2typescript-plugin-react-fetching-library\\");
 var Schemas;
@@ -13914,19 +13914,19 @@ var Schemas;
     Schemas.Message = zodSchemaMessage();
     Schemas.SetFruit = zodSchemaSetFruit();
     function zodSchemaFruit() {
-        return z.object({
-            description: z.string().optional().nullable(),
-            name: z.string().optional().nullable(),
-            snake_case_prop: z.string().optional().nullable(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
+            name: zod_1.z.string().optional().nullable(),
+            snake_case_prop: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaMessage() {
-        return z.object({
-            description: z.string().optional().nullable(),
+        return zod_1.z.object({
+            description: zod_1.z.string().optional().nullable(),
         });
     }
     function zodSchemaSetFruit() {
-        return z.array(zodSchemaFruit());
+        return zod_1.z.array(zodSchemaFruit());
     }
 })(Schemas = exports.Schemas || (exports.Schemas = {}));
 var Operations;
@@ -13994,7 +13994,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/simple-openapi.json exe
 "/**
  * Generated code, DO NOT modify directly.
  */
-import * as z from \\"zod\\";
+import { z } from \\"zod\\";
 import { ValidateRule } from \\"openapi2typescript\\";
 import { actionBuilder } from \\"openapi2typescript-plugin-react-fetching-library\\";
 

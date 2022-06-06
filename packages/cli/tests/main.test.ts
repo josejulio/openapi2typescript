@@ -169,6 +169,25 @@ describe('src/cli/schema', () => {
             });
         });
 
+        it('do not create namespace when using actionGenerator as None', () => {
+            return execute({
+                input: filename,
+                output: tempSchemaDir,
+                skipPostProcess: false,
+                addEslintDisable: true,
+                actionGenerator: ActionGeneratorType.NONE,
+                skipTypes: true,
+                strict: true,
+                explicitTypes: false,
+                naming: NamingType.NONE
+            }).then(() => {
+                expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+                const contents = readFileSync(`${tempSchemaDir}/Generated.ts`).toString()
+                expect(contents).not.toContain('export namespace');
+                expect(contents).not.toContain('export module');
+            });
+        });
+
         it('execute accepts urls', async () => {
             (fetchMock as any).get('http://foobar.baz/my-openapi.json', {
                 body: readFileSync(filename).toString(),

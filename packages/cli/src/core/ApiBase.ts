@@ -14,6 +14,7 @@ import assertNever from 'assert-never';
 import { sortByKey } from './Utils';
 import { NamingType } from './types/NamingType';
 import camelcase from 'camelcase';
+import { ActionGeneratorType } from './types/ActionGeneratorType';
 
 export interface Options {
     skipTypes: boolean;
@@ -22,6 +23,7 @@ export interface Options {
     useFunctionTypeGenerator: boolean;
     schemasPrefix: string;
     naming: NamingType;
+    actionGenerator: ActionGeneratorType;
 }
 
 export class ApiBase {
@@ -40,6 +42,7 @@ export class ApiBase {
             useFunctionTypeGenerator: true,
             schemasPrefix: '',
             naming: NamingType.NONE,
+            actionGenerator: ActionGeneratorType.NONE,
             ...options
         };
         this.localBuffer = [];
