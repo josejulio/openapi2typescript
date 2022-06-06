@@ -1,4 +1,3 @@
-import { CLIEngine } from 'eslint';
 import fetch from 'node-fetch';
 import prettier from 'prettier';
 import isUrl from 'is-url';
@@ -92,23 +91,6 @@ export const execute = async (options: Options) => {
             }
         );
     }).then(async (content) => {
-        if (options.skipPostProcess) {
-            return writeFileSync(options.output, content);
-        }
-
-        const eslint = new CLIEngine({
-            fix: true
-        });
-
-        const eslintResult = await eslint.executeOnText(content, options.output);
-        if (eslintResult.results.length === 1 && eslintResult.results[0].output) {
-            content = eslintResult.results[0].output;
-        }
-
-        if (options.addEslintDisable) {
-            content = '/* eslint-disable */\n' + content;
-        }
-
         return writeFileSync(options.output, content);
     });
 };
