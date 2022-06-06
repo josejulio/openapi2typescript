@@ -63,7 +63,7 @@ export const execute = async (options: Options) => {
             '/**\n',
             '* Generated code, DO NOT modify directly.\n',
             '*/\n',
-            'import * as z from \'zod\';\n'
+            'import { z } from \'zod\';\n'
         ].forEach(l => buffer.write(l, BufferType.HEADER));
 
         const typeBuilder = new ApiTypeBuilder(descriptor, buffer, options);
