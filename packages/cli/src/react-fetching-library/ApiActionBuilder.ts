@@ -33,6 +33,11 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             if (!this.options.skipTypes) {
                 this.appendTemp(': Params');
             }
+
+            if ((operation.requestBody === undefined || operation.requestBody.schema.isOptional)
+                && operation.parameters.every(op => op.schema.isOptional)) {
+                this.appendTemp(' = {}');
+            }
         }
 
         this.appendTemp(')');
