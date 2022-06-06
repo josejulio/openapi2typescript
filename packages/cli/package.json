@@ -28,8 +28,7 @@
     "start": "tsc --build --watch",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx src --fix",
-    "test": "jest --verbose",
-    "test:ci": "npm-run-all 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
+    "test": "jest --verbose"
   },
   "dependencies": {
     "camelcase": "5.3.1",
