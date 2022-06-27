@@ -353,7 +353,8 @@ class ApiDescriptorBuilder {
                     };
                 case 'string':
                     return {
-                        type: SchemaType.STRING
+                        type: SchemaType.STRING,
+                        format: schema.format
                     };
                 case 'boolean':
                     return {
