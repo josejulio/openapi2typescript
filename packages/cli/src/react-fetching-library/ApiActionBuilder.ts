@@ -132,7 +132,10 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             }
 
             foundHooks.push('useRequest');
-            this.appendTemp(`const useRequest = () => useWrappedRequest(actionCreator, rules);`);
+            this.appendTemp(`const useRequest = () => `
+            + ` useWrappedRequest<`
+            + `Operations.${operation.id}.Payload, Operations.${operation.id}.Params`
+            + `>(actionCreator, rules);`);
 
             this.appendTemp(`return { ${foundHooks.join(', ')} };`);
         }
