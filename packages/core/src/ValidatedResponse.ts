@@ -1,10 +1,13 @@
 import * as z from 'zod';
 
 export interface ValidatedResponse<Type extends string, Status extends number | undefined, ValueType> {
-    type: Type,
+    type: Type;
     status: Status;
     value: ValueType;
     errors: Record<number, Array<z.ZodError>>;
+    hasErrors: boolean;
+    rawErrors: any;
+    headers?: Headers;
 }
 
 export class ValidateRule {
@@ -27,16 +30,9 @@ export class ValidateRule {
 
 }
 
-export const validatedResponse = <
-    Name extends string,
-    Status extends number | undefined,
-    Value
-    >(name: Name, status: Status, value: Value, errors: Record<number, Array<z.ZodError>>): ValidatedResponse<Name, Status, Value> => ({
-        type: name,
-        status,
-        value,
-        errors
-    });
+// Helpers to help the type inference
+export const validationResponseWrapper = <Name extends string, Status extends number | undefined, Value >
+    (response: ValidatedResponse<Name, Status, Value>): ValidatedResponse<Name, Status, Value> => response;
 
 export const validationResponseTransformer = <
     I,

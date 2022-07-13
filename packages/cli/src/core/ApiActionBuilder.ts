@@ -35,7 +35,24 @@ export abstract class ApiActionBuilder extends ApiBase {
 
         if (this.api.paths) {
             const paths = this.api.paths;
+
             this.appendTemp('export module Operations {\n');
+            for (const path of paths) {
+                for (const operation of path.operations) {
+                    this.appendTemp(`export module ${operation.id} {\n`);
+
+                    this.anonymousTypes(operation);
+                    this.params(operation);
+                    this.payloadType(operation);
+                    this.appendTemp('}\n');
+                }
+            }
+
+            this.appendTemp('}\n\n');
+
+            this.appendTemp('const createClient = () => {\n');
+            const operations = [];
+
             for (const path of paths) {
                 for (const operation of path.operations) {
                     this.appendTemp(`// ${operation.verb} ${operation.path}\n`);
@@ -45,17 +62,20 @@ export abstract class ApiActionBuilder extends ApiBase {
                         );
                     }
 
-                    this.appendTemp(`export module ${operation.id} {\n`);
-                    this.anonymousTypes(operation);
-                    this.params(operation);
+                    operations.push(operation.id);
+
+                    this.appendTemp(`const ${operation.id} = (() => {\n`);
                     this.actions(operation);
                     this.appendTemp('\n');
 
-                    this.appendTemp('}\n');
+                    this.appendTemp('})();\n');
                 }
             }
 
-            this.appendTemp('}\n');
+            this.appendTemp(`return { ${operations.join(', ')} };`);
+
+            this.appendTemp('};\n\n');
+            this.appendTemp('export const client = createClient();\n');
             this.writeTempToBuffer(BufferType.OPERATIONS);
         }
     }
@@ -90,11 +110,11 @@ export abstract class ApiActionBuilder extends ApiBase {
         if (operation.requestBody) {
             if (!isType(operation.requestBody.schema)) {
                 const propName = this.anonymousParamTypeName('body');
-                this.appendTemp(`const ${propName} = `);
+                this.appendTemp(`export const ${propName} = `);
                 this.schema(operation.requestBody.schema, true);
                 this.appendTemp(';\n');
                 if (!this.options.skipTypes) {
-                    this.appendTemp(`type ${propName} = `);
+                    this.appendTemp(`export type ${propName} = `);
                     if (this.options.explicitTypes) {
                         this.schemaTypes(operation.requestBody.schema, true);
                     } else {
@@ -109,11 +129,11 @@ export abstract class ApiActionBuilder extends ApiBase {
         for (const response of operation.responses) {
             if (!isType(response.schema)) {
                 const propName = this.responseTypeName(response, false);
-                this.appendTemp(`const ${propName} = `);
+                this.appendTemp(`export const ${propName} = `);
                 this.schema(response.schema, true);
                 this.appendTemp(';\n');
                 if (!this.options.skipTypes) {
-                    this.appendTemp(`type ${propName} = `);
+                    this.appendTemp(`export type ${propName} = `);
                     if (this.options.explicitTypes) {
                         this.schemaTypes(response.schema, true);
                     } else {
@@ -169,7 +189,7 @@ export abstract class ApiActionBuilder extends ApiBase {
         }
     }
 
-    protected actions(operation: Operation) {
+    protected payloadType(operation: Operation) {
         if (operation.responses.length) {
             if (!this.options.skipTypes) {
                 const payloadType = this.payloadEndpointType();
@@ -183,7 +203,11 @@ export abstract class ApiActionBuilder extends ApiBase {
 
                 this.appendTemp('ValidatedResponse<\'unknown\', undefined, unknown>;\n');
             }
+        }
+    }
 
+    protected actions(operation: Operation) {
+        if (operation.responses.length) {
             this.buildActionFunction(operation);
         }
     }

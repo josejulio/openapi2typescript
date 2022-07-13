@@ -169,7 +169,7 @@ describe('src/cli/schema', () => {
             });
         });
 
-        it('do not create namespace when using actionGenerator as None', () => {
+        it('do not create module when using actionGenerator as None', () => {
             return execute({
                 input: filename,
                 output: tempSchemaDir,
@@ -183,7 +183,6 @@ describe('src/cli/schema', () => {
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 const contents = readFileSync(`${tempSchemaDir}/Generated.ts`).toString()
-                expect(contents).not.toContain('export namespace');
                 expect(contents).not.toContain('export module');
             });
         });

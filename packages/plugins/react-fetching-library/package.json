@@ -11,7 +11,7 @@
     "start": "tsc --build --watch",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx src --fix",
-    "test": "jest --verbose",
+    "test": "jest --verbose --passWithNoTests",
     "test:ci": "jest --coverage --forceExit --maxWorkers=4 --detectOpenHandles"
   },
   "peerDependencies": {
