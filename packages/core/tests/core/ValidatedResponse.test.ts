@@ -1,4 +1,4 @@
-import { validatedResponse, validationResponseTransformer } from '../../src';
+import { validationResponseWrapper, validationResponseTransformer } from '../../src';
 
 describe('core/ValidatedResponse.test.ts', () => {
     it('validationResponseTransformer is an identity function', () => {
@@ -7,11 +7,20 @@ describe('core/ValidatedResponse.test.ts', () => {
     });
 
     it('validatedResponse returns an object with the params passed', () => {
-        expect(validatedResponse('foo', 200, 'bar', {})).toEqual({
+        expect(validationResponseWrapper({
             type: 'foo',
             status: 200,
             value: 'bar',
-            errors: {}
+            errors: {},
+            hasErrors: false,
+            rawErrors: undefined
+        })).toEqual({
+            type: 'foo',
+            status: 200,
+            value: 'bar',
+            errors: {},
+            hasErrors: false,
+            rawErrors: undefined
         });
     });
 });

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fetch from 'node-fetch';
 import prettier from 'prettier';
 import isUrl from 'is-url';
@@ -27,7 +29,7 @@ export interface Options {
 
 export const execute = async (options: Options) => {
 
-    if (options.naming !== NamingType.NONE && (options.explicitTypes || options.skipTypes)) {
+    if (options.naming !== NamingType.NONE && !(options.explicitTypes || options.skipTypes)) {
         throw new Error('explicitTypes or skipTypes must be used when using a naming');
     }
 
@@ -91,6 +93,10 @@ export const execute = async (options: Options) => {
             }
         );
     }).then(async (content) => {
+        if (options.addEslintDisable) {
+            content = '/* eslint-disable */\n' + content;
+        }
+
         return writeFileSync(options.output, content);
     });
 };

@@ -4,14 +4,15 @@
   "license": "Apache-2.0",
   "main": "dist/src/index.js",
   "files": [
-    "dist/src/**"
+    "dist/src/**",
+    "src/**"
   ],
   "scripts": {
     "build": "tsc --build",
     "start": "tsc --build --watch",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx src --fix",
-    "test": "jest --verbose",
+    "test": "jest --verbose --passWithNoTests",
     "test:ci": "jest --coverage --forceExit --maxWorkers=4 --detectOpenHandles"
   },
   "peerDependencies": {

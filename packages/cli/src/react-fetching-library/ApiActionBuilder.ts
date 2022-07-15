@@ -14,8 +14,8 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
 
         buffer.write('import { ValidateRule } from \'openapi2typescript\';\n', BufferType.HEADER);
 
-        buffer.write('import { actionBuilder' +
-            (this.options.skipTypes ? '' : ', ActionValidatableConfig')
+        buffer.write('import { actionBuilder, '
+            + 'useWrappedMutation, useWrappedParameterizedQuery, useWrappedQuery, useWrappedRequest'
             + ' } from \'openapi2typescript-plugin-react-fetching-library\';\n', BufferType.HEADER);
     }
 
@@ -24,14 +24,14 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
         const payloadType = this.payloadEndpointType();
 
         if (!this.options.skipTypes) {
-            this.appendTemp(`export type ${actionType} = Action<${payloadType}, ActionValidatableConfig>;\n`);
+            this.appendTemp(`type ${actionType} = Action<Operations.${operation.id}.${payloadType}>;\n`);
         }
 
-        this.appendTemp(`export const ${this.functionEndpointType()} = (`);
-        if ((operation.parameters && operation.parameters.length > 0) || operation.requestBody) {
+        this.appendTemp(`const ${this.functionEndpointType()} = (`);
+        if (operation.hasParams) {
             this.appendTemp('params');
             if (!this.options.skipTypes) {
-                this.appendTemp(': Params');
+                this.appendTemp(`: Operations.${operation.id}.Params`);
             }
 
             if ((operation.requestBody === undefined || operation.requestBody.schema.isOptional)
@@ -88,22 +88,67 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             }
         }
 
+        this.appendTemp('.build();\n');
+        this.appendTemp('}\n');
+
         if (operation.responses) {
-            this.appendTemp('.config({\nrules:[\n');
             const responses = Object.values(operation.responses);
+            this.appendTemp('const rules = [\n');
+
             responses.forEach((response, index, array) => {
                 const responseType = isType(response.schema) ? `'${this.responseTypeName(response, false)}'` : '\'unknown\'';
-                const responseTypeName = this.responseTypeName(response, true);
+                const responseTypeName = isType(response.schema) ?
+                    this.responseTypeName(response, true)
+                    : `Operations.${operation.id}.${this.responseTypeName(response, true)}`;
                 this.appendTemp(`new ValidateRule(${responseTypeName}, ${responseType}, ${response.status})\n`);
                 if (array.length !== index + 1) {
                     this.appendTemp(',\n');
                 }
             });
-            this.appendTemp(']})\n');
+            this.appendTemp('];\n');
+
+            const foundHooks = [ this.functionEndpointType() ];
+
+            if (operation.verb === 'GET') {
+                foundHooks.push('useQuery');
+                const paramsArgument = operation.hasParams ? `params: Operations.${operation.id}.Params, ` : '';
+                this.appendTemp(
+                    `const useQuery = (${paramsArgument}initFetch?: boolean) =>`
+                + `useWrappedQuery<Operations.${operation.id}.Payload>(${this.functionEndpointType()}(${operation.hasParams ? 'params' : ''}), rules, initFetch);\n`
+                );
+
+                if (operation.hasParams) {
+                    foundHooks.push('useParameterizedQuery');
+                    this.appendTemp(
+                        `const useParameterizedQuery = () => `
+                        + `useWrappedParameterizedQuery<Operations.${operation.id}.Payload, ${this.paramsType(operation)}>`
+                        + `(${this.functionEndpointType()}, rules);\n`
+                    );
+                }
+            } else {
+                foundHooks.push('useMutation');
+                this.appendTemp(
+                    `const useMutation = () => `
+                        + `useWrappedMutation<Operations.${operation.id}.Payload, ${this.paramsType(operation)}>`
+                        + `(${this.functionEndpointType()}, rules);\n`);
+            }
+
+            foundHooks.push('useRequest');
+            this.appendTemp(`const useRequest = () => `
+            + ` useWrappedRequest<`
+            + `Operations.${operation.id}.Payload, ${this.paramsType(operation)}`
+            + `>(${this.functionEndpointType()}, rules);`);
+
+            this.appendTemp(`return { ${foundHooks.join(', ')} };`);
+        }
+    }
+
+    private paramsType(operation: Operation): string {
+        if (operation.hasParams) {
+            return `Operations.${operation.id}.Params`;
         }
 
-        this.appendTemp('.build();\n');
-        this.appendTemp('}\n');
+        return 'void';
     }
 
 }
