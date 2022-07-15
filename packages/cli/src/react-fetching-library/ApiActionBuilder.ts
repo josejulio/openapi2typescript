@@ -28,7 +28,7 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
         }
 
         this.appendTemp(`const ${this.functionEndpointType()} = (`);
-        if ((operation.parameters && operation.parameters.length > 0) || operation.requestBody) {
+        if (operation.hasParams) {
             this.appendTemp('params');
             if (!this.options.skipTypes) {
                 this.appendTemp(`: Operations.${operation.id}.Params`);
@@ -107,38 +107,48 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             });
             this.appendTemp('];\n');
 
-            const foundHooks = [];
+            const foundHooks = [ this.functionEndpointType() ];
 
             if (operation.verb === 'GET') {
                 foundHooks.push('useQuery');
+                const paramsArgument = operation.hasParams ? `params: Operations.${operation.id}.Params, ` : '';
                 this.appendTemp(
-                    `const useQuery = (params: Operations.${operation.id}.Params, initFetch?: boolean) =>`
-                + `useWrappedQuery<Operations.${operation.id}.Payload>(actionCreator(params), rules, initFetch);\n`
+                    `const useQuery = (${paramsArgument}initFetch?: boolean) =>`
+                + `useWrappedQuery<Operations.${operation.id}.Payload>(${this.functionEndpointType()}(${operation.hasParams ? 'params' : ''}), rules, initFetch);\n`
                 );
 
-                foundHooks.push('useParameterizedQuery');
-                this.appendTemp(
-                    `const useParameterizedQuery = () => `
-                + `useWrappedParameterizedQuery<Operations.${operation.id}.Payload, Operations.${operation.id}.Params>`
-                    + `(actionCreator, rules);\n`
-                );
-
+                if (operation.hasParams) {
+                    foundHooks.push('useParameterizedQuery');
+                    this.appendTemp(
+                        `const useParameterizedQuery = () => `
+                        + `useWrappedParameterizedQuery<Operations.${operation.id}.Payload, ${this.paramsType(operation)}>`
+                        + `(${this.functionEndpointType()}, rules);\n`
+                    );
+                }
             } else {
                 foundHooks.push('useMutation');
                 this.appendTemp(
                     `const useMutation = () => `
-                        + `useWrappedMutation<Operations.${operation.id}.Payload, Operations.${operation.id}.Params>`
-                        + `(actionCreator, rules);\n`);
+                        + `useWrappedMutation<Operations.${operation.id}.Payload, ${this.paramsType(operation)}>`
+                        + `(${this.functionEndpointType()}, rules);\n`);
             }
 
             foundHooks.push('useRequest');
             this.appendTemp(`const useRequest = () => `
             + ` useWrappedRequest<`
-            + `Operations.${operation.id}.Payload, Operations.${operation.id}.Params`
-            + `>(actionCreator, rules);`);
+            + `Operations.${operation.id}.Payload, ${this.paramsType(operation)}`
+            + `>(${this.functionEndpointType()}, rules);`);
 
             this.appendTemp(`return { ${foundHooks.join(', ')} };`);
         }
+    }
+
+    private paramsType(operation: Operation): string {
+        if (operation.hasParams) {
+            return `Operations.${operation.id}.Params`;
+        }
+
+        return 'void';
     }
 
 }

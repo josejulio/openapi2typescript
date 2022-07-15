@@ -24,7 +24,7 @@
     "dist/*"
   ],
   "scripts": {
-    "build": "tsc --build && printf '%s\\n%s\\n' \"#!/usr/bin/env node\" \"$(cat dist/src/main.js)\" >dist/src/main.js",
+    "build": "tsc --build && chmod +x dist/src/main.js",
     "start": "tsc --build --watch",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx src --fix",
@@ -32,6 +32,7 @@
     "test:ci": "jest --coverage --forceExit --maxWorkers=4 --detectOpenHandles"
   },
   "dependencies": {
+    "assert-never": "1.2.1",
     "camelcase": "5.3.1",
     "commander": "7.2.0",
     "is-url": "1.2.4",
@@ -39,7 +40,6 @@
     "prettier": "2.3.1"
   },
   "devDependencies": {
-    "assert-never": "1.2.1",
     "eslint": "7.28.0"
   },
   "publishConfig": {

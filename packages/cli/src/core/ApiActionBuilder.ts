@@ -147,7 +147,7 @@ export abstract class ApiActionBuilder extends ApiBase {
     }
 
     protected params(operation: Operation) {
-        if ((operation.parameters.length > 0) || operation.requestBody) {
+        if (operation.hasParams) {
             if (this.options.skipTypes) {
                 this.appendTemp(`/*\n Params\n`);
             } else {

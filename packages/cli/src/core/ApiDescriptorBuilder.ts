@@ -185,14 +185,16 @@ class ApiDescriptorBuilder {
                     const responses = this.getResponses(openApiOp.responses);
 
                     if (openApiOp) {
+                        const parameters = this.getParameters(openApiOp.parameters);
                         path.operations.push({
                             id,
                             description: openApiOp.summary,
-                            parameters: this.getParameters(openApiOp.parameters),
+                            parameters,
                             path: pathKey,
                             verb,
                             requestBody,
-                            responses
+                            responses,
+                            hasParams: !!requestBody || parameters.length > 0
                         });
                     }
                 }

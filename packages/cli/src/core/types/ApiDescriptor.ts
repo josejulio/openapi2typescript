@@ -150,7 +150,7 @@ export interface Operation {
     parameters: Array<Parameter>;
     requestBody?: RequestBody;
     responses: Array<Response>;
-
+    hasParams: boolean;
 }
 
 export interface Parameter {

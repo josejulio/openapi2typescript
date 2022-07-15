@@ -4,7 +4,8 @@
   "license": "Apache-2.0",
   "main": "dist/src/index.js",
   "files": [
-    "dist/src/**"
+    "dist/src/**",
+    "src/**"
   ],
   "scripts": {
     "build": "tsc --build",
