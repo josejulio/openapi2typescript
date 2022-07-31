@@ -108,6 +108,7 @@ export interface SchemaInteger extends SchemaBase {
 
 export interface SchemaString extends SchemaBase {
     type: SchemaType.STRING;
+    format?: string;
     maxLength?: number;
 }
 
