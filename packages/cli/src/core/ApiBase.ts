@@ -139,7 +139,7 @@ export class ApiBase {
                         schema.anyOf.filter(v => v !== s).forEach((s2, index2, array2) => {
                             this.schemaTypes(s2);
                             if (array2.length !== index2 + 1) {
-                                this.appendTemp('& ');
+                                this.appendTemp('| ');
                             }
                         });
 
