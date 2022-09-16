@@ -133,7 +133,7 @@ export class ApiBase {
                         this.schemaTypes(s);
 
                         if (schema.anyOf.length > 1) {
-                            this.appendTemp('& Partial<');
+                            this.appendTemp('| Partial<');
                         }
 
                         schema.anyOf.filter(v => v !== s).forEach((s2, index2, array2) => {
